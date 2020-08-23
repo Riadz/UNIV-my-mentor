@@ -6,13 +6,18 @@ require('common/header.php')
 ?>
 
 <?php
-$tab = $_GET['tab'] ?? 'login';
+$login_tab = 'active';
+$signup_tab = '';
+if (isset($_GET['signup_tab'])) {
+	$login_tab = '';
+	$signup_tab = 'active';
+}
 ?>
 <main class="auth">
 	<div class="auth-wrapper">
 		<div class="auth-toggle">
-			<button class="auth-toggle-btn <?= $tab == 'login' ? 'active' : '' ?>" target="student-login">Se Connecter</button>
-			<button class="auth-toggle-btn <?= $tab == 'signup' ? 'active' : '' ?>" target="student-signup">Crée Un Compte</button>
+			<button class="auth-toggle-btn <?= $login_tab ?>" target="student-login">Se Connecter</button>
+			<button class="auth-toggle-btn <?= $signup_tab ?>" target="student-signup">Crée Un Compte</button>
 		</div>
 		<?php if (isset($_GET['error'])) : ?>
 			<div class="auth-error">
@@ -20,7 +25,7 @@ $tab = $_GET['tab'] ?? 'login';
 			</div>
 		<?php endif ?>
 		<div>
-			<form class="auth-form student-login <?= $tab == 'login' ? 'active' : '' ?>" action="/" method="POST">
+			<form class="auth-form student-login <?= $login_tab ?>" action="/" method="POST">
 				<div class="input-container">
 					<input name="email" type="email" class="input" placeholder=" " />
 					<label class="input-label">
@@ -41,7 +46,7 @@ $tab = $_GET['tab'] ?? 'login';
 				</button>
 			</form>
 
-			<form class="auth-form student-signup <?= $tab == 'signup' ? 'active' : '' ?>" action="/" method="POST">
+			<form class="auth-form student-signup <?= $signup_tab ?>" action="/" method="POST">
 				<div class="row">
 					<div class="col-12">
 						<div class="input-container pin" style="width:100px;margin-right:auto;margin-left:auto">
