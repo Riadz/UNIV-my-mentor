@@ -5,14 +5,22 @@ $header_info = [
 require('common/header.php')
 ?>
 
+<?php
+$tab = $_GET['tab'] ?? 'login';
+?>
 <main class="auth">
 	<div class="auth-wrapper">
 		<div class="auth-toggle">
-			<button class="auth-toggle-btn active" target="student-login">Se Connecter</button>
-			<button class="auth-toggle-btn" target="student-signup">Crée Un Compte</button>
+			<button class="auth-toggle-btn <?= $tab == 'login' ? 'active' : '' ?>" target="student-login">Se Connecter</button>
+			<button class="auth-toggle-btn <?= $tab == 'signup' ? 'active' : '' ?>" target="student-signup">Crée Un Compte</button>
 		</div>
+		<?php if (isset($_GET['error'])) : ?>
+			<div class="auth-error">
+				<?= htmlspecialchars($_GET['error']) ?>
+			</div>
+		<?php endif ?>
 		<div>
-			<form class="auth-form student-login active" action="/" method="POST">
+			<form class="auth-form student-login <?= $tab == 'login' ? 'active' : '' ?>" action="/" method="POST">
 				<div class="input-container">
 					<input name="email" type="email" class="input" placeholder=" " />
 					<label class="input-label">
@@ -33,7 +41,7 @@ require('common/header.php')
 				</button>
 			</form>
 
-			<form class="auth-form student-signup" action="/" method="POST">
+			<form class="auth-form student-signup <?= $tab == 'signup' ? 'active' : '' ?>" action="/" method="POST">
 				<div class="row">
 					<div class="col-12">
 						<div class="input-container pin" style="width:100px;margin-right:auto;margin-left:auto">

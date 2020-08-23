@@ -8,6 +8,7 @@
   &-wrapper {
     width: 516px;
     padding: 2rem;
+    margin: 2rem;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba($color: #000, $alpha: 0.3);
     background-color: #35477207;
@@ -82,5 +83,16 @@
         -moz-appearance: textfield;
       }
     }
+  }
+
+  &-error {
+    padding: 1rem;
+    margin: 1rem 0 0;
+    font-size: 1.1rem;
+    text-align: center;
+
+    color: #fff;
+    background-color: #e01e31;
+    box-shadow: 0 0 10px rgb(224, 30, 49);
   }
 }

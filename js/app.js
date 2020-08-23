@@ -11,15 +11,14 @@ $('.owl-carousel').owlCarousel({
 // auth toggle
 $('.auth-toggle-btn').on('click', function () {
   target = $(this).attr('target');
-  console.log(target);
 
   $(this).addClass('active');
   $(this).siblings().removeClass('active');
 
-
   $('.auth-form').not(target).hide();
-
   $(`.${target}`).fadeIn(600);
+
+  $('.auth-error').hide();
 });
 
 /* ====== Bootstrap ====== */
