@@ -1,0 +1,22 @@
+.underline-1 {
+  width: 56px;
+  height: 2px;
+  background-color: var(--text-2);
+}
+
+.underlined-1 {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.underlined-1::after {
+  content: '';
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 150px;
+  height: 2px;
+  background-color: var(--text-2);
+  border-radius: 2px;
+}

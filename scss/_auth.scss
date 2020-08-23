@@ -1,0 +1,86 @@
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: calc(100vh - 108px);
+
+  &-wrapper {
+    width: 516px;
+    padding: 2rem;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba($color: #000, $alpha: 0.3);
+    background-color: #35477207;
+  }
+
+  &-toggle {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+
+    &-btn {
+      flex-grow: 1;
+      padding: 1rem 0.5rem;
+
+      text-align: center;
+      outline: none;
+      font-size: 1.1rem;
+
+      color: var(--btn-auth-color);
+      border: 2px solid var(--btn-auth-color);
+      background-color: var(--btn-auth-bg);
+      &:hover {
+        background-color: var(--btn-auth-bg-hover);
+      }
+
+      &.active {
+        cursor: default;
+        pointer-events: none;
+        color: var(--btn-auth-active-color);
+        background-color: var(--btn-auth-active-bg);
+      }
+    }
+  }
+
+  &-form {
+    display: none;
+    &.active {
+      display: block;
+    }
+
+    .input-underline {
+      border-bottom: 2px solid var(--btn-1-bg-hover);
+    }
+
+    .btn {
+      display: block;
+      margin: 3rem auto 0;
+
+      color: var(--btn-1-color);
+      background-color: var(--btn-1-bg);
+
+      &:hover {
+        background-color: var(--btn-1-bg-hover);
+      }
+    }
+
+    .pin {
+      &-tooltip {
+        position: absolute;
+        left: 105%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      // hiding number arrows
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      input {
+        -moz-appearance: textfield;
+      }
+    }
+  }
+}

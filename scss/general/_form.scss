@@ -1,0 +1,65 @@
+// underlined input
+.input-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 42px;
+}
+.input {
+  width: 100%;
+
+  padding: 0.5rem;
+
+  font-size: 1rem;
+  border: 0;
+  border-bottom: 2px solid silver;
+  border-radius: 4px 4px 0 0;
+  outline: 0;
+}
+
+.input-label {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0.5rem;
+  border-bottom: 2px solid transparent;
+
+  font-size: 1rem;
+
+  pointer-events: none;
+  transition: transform 0.3s ease, color 0.4s ease;
+}
+.input:focus + .input-label,
+.input:not(:placeholder-shown) + .input-label {
+  transform: translate(-0.5rem, -70%);
+}
+
+.input-underline {
+  position: absolute;
+  left: 50%;
+
+  width: 0;
+  height: 100%;
+
+  pointer-events: none;
+  border-bottom: 2px solid lightskyblue;
+
+  transition: width 0.4s ease-in, left 0.4s ease-in;
+}
+.input:focus + .input-label + .input-underline,
+.input:not(:placeholder-shown) + .input-label + .input-underline {
+  left: 0;
+  width: 100%;
+}
+
+// other
+textarea {
+  resize: vertical;
+  height: 226px;
+}
+.mandatory-star {
+  color: red;
+  margin-left: 2px;
+}

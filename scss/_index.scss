@@ -1,0 +1,228 @@
+#landing-page {
+  padding-top: 120px;
+  @media (max-width: 991.98px) {
+    padding-top: 2rem;
+  }
+
+  h1 {
+    font-family: 'Ubuntu Mono';
+    font-style: italic;
+    font-weight: 500;
+    font-size: 3rem;
+    line-height: 56px;
+
+    color: var(--text-2);
+  }
+  p {
+    margin-top: 1.6rem;
+
+    font-weight: 300;
+    font-size: 1.3rem;
+    line-height: 32px;
+
+    color: var(--text-3);
+  }
+  a {
+    margin-top: 3rem;
+  }
+
+  .landing-page-ilust {
+    margin-top: -100px;
+    margin-left: -50px;
+  }
+}
+.feature {
+  padding-top: 120px;
+  @media (max-width: 991.98px) {
+    padding-top: 2rem;
+  }
+
+  h2 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    font-size: 2.5rem;
+    i {
+      color: var(--text-1);
+      font-size: 1.1em;
+      margin-right: 1rem;
+    }
+    span {
+      line-height: 30px;
+    }
+  }
+
+  &-carousel {
+    $height: 450px;
+    $width: 100%;
+
+    &-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    &-container {
+      height: $height;
+      width: $width;
+      max-width: 100%;
+    }
+
+    &-card {
+      position: relative;
+      height: $height;
+      width: $width;
+      max-width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: grab;
+
+      box-shadow: 0 0 2px rgba($color: #000000, $alpha: 0.1);
+
+      &-text {
+        position: relative;
+        z-index: 2;
+        padding: 2rem;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        color: var(--text-4);
+
+        h3 {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          font-size: 2rem;
+          i {
+            font-size: 1.1em;
+            margin-right: 1rem;
+          }
+          span {
+            line-height: 30px;
+          }
+          &::after {
+            background-color: var(--text-4);
+          }
+        }
+
+        p {
+          position: relative;
+          text-align: center;
+
+          font-size: 1.2rem;
+        }
+      }
+
+      &-bg {
+        position: absolute;
+        top: 0;
+        z-index: 1;
+
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+
+        user-select: none;
+        filter: brightness(40%);
+      }
+    }
+
+    .owl-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+
+      .owl-dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        outline: 0;
+
+        background-color: transparent;
+        border: 3px solid var(--text-1);
+
+        & + .owl-dot {
+          margin-left: 1rem;
+        }
+
+        &.active {
+          background-color: var(--text-1);
+        }
+        transition: background-color 0.3s ease;
+      }
+    }
+  }
+
+  &-text {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+}
+.acc-cta {
+  padding: 120px 0;
+  @media (max-width: 991.98px) {
+    padding: 2rem 0;
+  }
+
+  h2 {
+    text-align: center;
+
+    font-size: 2.5rem;
+    span {
+      line-height: 30px;
+    }
+  }
+  h3 {
+    margin-top: 2rem;
+  }
+
+  &-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 144px;
+      width: 144px;
+
+      i {
+        font-size: 6rem;
+      }
+      span {
+        font-family: 'Alegreya Sans';
+        font-style: italic;
+        font-weight: 900;
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &-divivder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 2rem;
+
+    font-family: 'Ubuntu Mono';
+    font-style: italic;
+    font-weight: 500;
+    font-size: 2rem;
+
+    &::after,
+    &::before {
+      content: '';
+      flex-grow: 1;
+      width: 2px;
+      background-color: rgba($color: #000, $alpha: 0.4);
+    }
+  }
+}

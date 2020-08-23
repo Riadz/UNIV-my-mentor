@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="eb113788-f1f1-4c1f-be62-f1d0ea2e1eb6"
+   data-name="Layer 1"
+   width="795.39431"
+   height="574.03802"
+   viewBox="0 0 795.39431 574.03802"
+   version="1.1"
+   sodipodi:docname="graduation_hat.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata92">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview90"
+     showgrid="false"
+     inkscape:zoom="0.570739"
+     inkscape:cx="-9.4167493"
+     inkscape:cy="348.96561"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="eb113788-f1f1-4c1f-be62-f1d0ea2e1eb6" />
+  <defs
+     id="defs9">
+    <linearGradient
+       id="b2a81085-935f-40be-bb27-75940df8c338"
+       x1="-450.78971"
+       y1="2803.04671"
+       x2="-450.78971"
+       y2="2729.34772"
+       gradientTransform="translate(3217.53309 1009.65784) rotate(90)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="gray"
+         stop-opacity="0.25"
+         id="stop2" />
+      <stop
+         offset="0.53514"
+         stop-color="gray"
+         stop-opacity="0.12"
+         id="stop4" />
+      <stop
+         offset="1"
+         stop-color="gray"
+         stop-opacity="0.1"
+         id="stop6" />
+    </linearGradient>
+  </defs>
+  <title
+     id="title11">Graduation</title>
+  <ellipse
+     cx="232.05775"
+     cy="450.06897"
+     rx="35.09476"
+     ry="5.26421"
+     transform="translate(-476.55674 294.92367) rotate(-63.61079)"
+     fill="#e0e0e0"
+     id="ellipse13" />
+  <ellipse
+     cx="670.57742"
+     cy="667.85592"
+     rx="35.09476"
+     ry="3.57677"
+     transform="translate(-428.03695 808.73554) rotate(-63.61079)"
+     fill="#e0e0e0"
+     id="ellipse15" />
+  <rect
+     x="397.95325"
+     y="566.93512"
+     width="21.05685"
+     height="70.189507"
+     transform="rotate(39.54732,534.00573,239.17478)"
+     id="rect17"
+     style="fill:#fe5f55;fill-opacity:1" />
+  <rect
+     x="409.32507"
+     y="573.56618"
+     width="23.69234"
+     height="70.18951"
+     transform="translate(489.54965 1134.58125) rotate(-166.7689)"
+     opacity="0.05"
+     id="rect19" />
+  <rect
+     x="411.92558"
+     y="573.86778"
+     width="21.05685"
+     height="70.18951"
+     transform="translate(492.0121 1135.47005) rotate(-166.7689)"
+     fill="#f55f44"
+     id="rect21"
+     style="fill:#fe5f55;fill-opacity:1" />
+  <rect
+     x="414.48638"
+     y="314.08219"
+     width="73.69899"
+     height="489.57186"
+     transform="translate(-452.20218 551.7936) rotate(-63.61079)"
+     fill="url(#b2a81085-935f-40be-bb27-75940df8c338)"
+     id="rect23" />
+  <rect
+     x="421.72508"
+     y="519.09383"
+     width="40.35897"
+     height="70.18951"
+     transform="translate(90.06389 -301.64381) rotate(26.38921)"
+     opacity="0.05"
+     id="rect27" />
+  <rect
+     x="423.47981"
+     y="519.09383"
+     width="36.8495"
+     height="70.18951"
+     transform="translate(90.06389 -301.64381) rotate(26.38921)"
+     fill="#f55f44"
+     id="rect29"
+     style="fill:#fe5f55;fill-opacity:1" />
+  <rect
+     x="428.83545"
+     y="518.70387"
+     width="24.56633"
+     height="70.18951"
+     transform="translate(89.80867 -301.33512) rotate(26.38921)"
+     opacity="0.05"
+     id="rect31" />
+  <rect
+     x="430.59019"
+     y="518.70387"
+     width="21.05685"
+     height="70.18951"
+     transform="translate(89.80867 -301.33512) rotate(26.38921)"
+     id="rect33"
+     fill="#f55f44"
+     style="fill:#fe5f55;fill-opacity:1" />
+  <path
+     d="M407.19716,520.481l-24,36s8,37,185,36,191-36,191-36l-33-48-101-69Z"
+     transform="translate(-202.30284 -162.98099)"
+     fill="#354772"
+     id="path75" />
+  <path
+     d="M407.19716,520.481l-24,36s8,37,185,36,191-36,191-36l-33-48-101-69Z"
+     transform="translate(-202.30284 -162.98099)"
+     opacity="0.15"
+     id="path77" />
+  <polygon
+     points="715.394 224 400.394 363 16.394 224 368.394 64 541.184 143.67 547.374 146.53 715.394 224"
+     fill="#354772"
+     id="polygon79" />
+  <polygon
+     points="715.394 224 400.394 363 16.394 224 368.394 64 541.184 143.67 547.374 146.53 715.394 224"
+     opacity="0.15"
+     id="polygon81" />
+  <polygon
+     points="553.894 257.32 547.894 257.68 541.184 143.67 547.374 146.53 553.894 257.32"
+     fill="#f5f5f5"
+     id="polygon83"
+     style="fill:#fe5f55;fill-opacity:1" />
+  <path
+     d="M411.19716,386.481l-28,170s201-65,376,0l-26-180S498.19716,347.481,411.19716,386.481Z"
+     transform="translate(-202.30284 -162.98099)"
+     fill="#354772"
+     id="path85" />
+  <ellipse
+     cx="553.39431"
+     cy="272"
+     rx="29"
+     ry="20"
+     fill="#f5f5f5"
+     id="ellipse87"
+     style="fill:#fe5f55;fill-opacity:1" />
+</svg>

@@ -1,0 +1,35 @@
+// Alegreya Sans
+@font-face {
+  font-family: 'Alegreya Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('fonts/AlegreyaSans-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Alegreya Sans';
+  font-style: italic;
+  font-weight: 900;
+  src: url('fonts/AlegreyaSans-BlackItalic.ttf') format('truetype');
+}
+
+// Ubuntu Mono
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: italic;
+  font-weight: 400;
+  src: url('fonts/UbuntuMono-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: italic;
+  font-weight: 500;
+  src: url('fonts/UbuntuMono-BoldItalic.ttf') format('truetype');
+}
+
+// Merriweather Sans
+@font-face {
+  font-family: 'Merriweather Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/MerriweatherSans-Regular.ttf') format('truetype');
+}
