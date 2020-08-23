@@ -6,12 +6,11 @@ require('common/header.php')
 ?>
 
 <?php
-$login_tab = 'active';
-$signup_tab = '';
-if (isset($_GET['signup_tab'])) {
-	$login_tab = '';
+$signup_tab = $login_tab = '';
+if (isset($_GET['signup_tab']))
 	$signup_tab = 'active';
-}
+else
+	$login_tab = 'active';
 ?>
 <main class="auth">
 	<div class="auth-wrapper">
