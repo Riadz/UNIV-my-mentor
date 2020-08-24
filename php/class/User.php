@@ -47,7 +47,7 @@ class User
 		);
 		$result = $prepared->execute($fields);
 		if (!$result)
-			die("SQL query fatal error" . $prepared->errorInfo()[2]);
+			static::errorSQL($prepared->errorInfo()[2]);
 		//
 		$prepared = static::$db->prepare(
 			"INSERT INTO `$type`
@@ -55,7 +55,7 @@ class User
 		);
 		$result = $prepared->execute(['user_id' => static::$db->lastInsertId()]);
 		if (!$result)
-			die("SQL query fatal error" . $prepared->errorInfo()[2]);
+			static::errorSQL($prepared->errorInfo()[2]);
 
 		//
 		return ['result' => true];
@@ -94,10 +94,17 @@ class User
 			];
 
 		//
+		if (static::emailExists($data['email']))
+			return [
+				'valid' => false,
+				'reason' => "L'email existe déjà!",
+			];
+
+		//
 		if ($data['password'] !== $data['password_conf'])
 			return [
 				'valid' => false,
-				'reason' => "Les mots de passe ne correspondent pas",
+				'reason' => "Les mots de passe ne correspondent pas!",
 			];
 
 		//
@@ -138,5 +145,26 @@ class User
 		if ($max != 0 && $len > $max)
 			return 0;
 		return 1;
+	}
+	private static function emailExists(String $email): bool
+	{
+		$prepared = static::$db->prepare(
+			"SELECT `user_id` FROM `user`
+			 WHERE `email` = :email
+			 LIMIT 1"
+		);
+
+		$result = $prepared->execute(['email' => $email]);
+		if ($result) {
+			return (bool) $prepared->rowCount();
+		} else {
+			static::errorSQL($prepared->errorInfo()[2]);
+		}
+	}
+
+	//
+	private static function errorSQL($error)
+	{
+		die("SQL fatal error: $error");
 	}
 }

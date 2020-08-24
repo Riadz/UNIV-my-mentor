@@ -26,14 +26,14 @@ else
 		<div>
 			<form class="auth-form student-login <?= $login_tab ?>" action="/" method="POST">
 				<div class="input-container">
-					<input name="email" type="email" class="input" placeholder=" " />
+					<input name="email" type="email" class="input" placeholder=" " required />
 					<label class="input-label">
 						Email
 					</label>
 					<div class="input-underline"></div>
 				</div>
 				<div class="input-container">
-					<input name="password" type="password" class="input" placeholder=" " />
+					<input name="password" type="password" class="input" placeholder=" " required />
 					<label class="input-label">
 						Mote de pass
 					</label>
@@ -49,7 +49,7 @@ else
 				<div class="row">
 					<div class="col-12">
 						<div class="input-container pin" style="width:100px;margin-right:auto;margin-left:auto">
-							<input name="pin" type="number" class="input" placeholder=" " />
+							<input name="pin" type="number" class="input" placeholder=" " required />
 							<label class="input-label">
 								Code pin
 							</label>
@@ -59,7 +59,7 @@ else
 					</div>
 					<div class="col-sm-6 col-12">
 						<div class="input-container">
-							<input name="last_name" type="text" class="input" placeholder=" " />
+							<input name="last_name" type="text" class="input" placeholder=" " required />
 							<label class="input-label">
 								Nom
 							</label>
@@ -68,7 +68,7 @@ else
 					</div>
 					<div class="col-sm-6 col-12">
 						<div class="input-container">
-							<input name="first_name" type="text" class="input" placeholder=" " />
+							<input name="first_name" type="text" class="input" placeholder=" " required />
 							<label class="input-label">
 								Prénom
 							</label>
@@ -77,7 +77,7 @@ else
 					</div>
 					<div class="col-12">
 						<div class="input-container" style="max-width: 100%;">
-							<input name="email" type="email" class="input" placeholder=" " />
+							<input name="email" type="email" class="input" placeholder=" " required />
 							<label class="input-label">
 								Email
 							</label>
@@ -86,7 +86,7 @@ else
 					</div>
 					<div class="col-sm-6 col-12">
 						<div class="input-container">
-							<input name="password" type="password" class="input" placeholder=" " />
+							<input name="password" type="password" class="input" placeholder=" " required />
 							<label class="input-label">
 								Mote de pass
 							</label>
@@ -95,7 +95,7 @@ else
 					</div>
 					<div class="col-sm-6 col-12">
 						<div class="input-container">
-							<input name="password_conf" type="password" class="input" placeholder=" " />
+							<input name="password_conf" type="password" class="input" placeholder=" " required />
 							<label class="input-label">
 								Confirmer mote de pass
 							</label>
