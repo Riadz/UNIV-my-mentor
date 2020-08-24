@@ -45,7 +45,7 @@ else
 				</button>
 			</form>
 
-			<form class="auth-form student-signup <?= $signup_tab ?>" action="/" method="POST">
+			<form class="auth-form student-signup <?= $signup_tab ?>" action="php/action/student_signup.php" method="POST">
 				<div class="row">
 					<div class="col-12">
 						<div class="input-container pin" style="width:100px;margin-right:auto;margin-left:auto">
@@ -59,7 +59,7 @@ else
 					</div>
 					<div class="col-sm-6 col-12">
 						<div class="input-container">
-							<input name="first-name" type="text" class="input" placeholder=" " />
+							<input name="last_name" type="text" class="input" placeholder=" " />
 							<label class="input-label">
 								Nom
 							</label>
@@ -68,7 +68,7 @@ else
 					</div>
 					<div class="col-sm-6 col-12">
 						<div class="input-container">
-							<input name="last-name" type="text" class="input" placeholder=" " />
+							<input name="first_name" type="text" class="input" placeholder=" " />
 							<label class="input-label">
 								Prénom
 							</label>
@@ -95,7 +95,7 @@ else
 					</div>
 					<div class="col-sm-6 col-12">
 						<div class="input-container">
-							<input name="password-conf" type="password" class="input" placeholder=" " />
+							<input name="password_conf" type="password" class="input" placeholder=" " />
 							<label class="input-label">
 								Confirmer mote de pass
 							</label>
