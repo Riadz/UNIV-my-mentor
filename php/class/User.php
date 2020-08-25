@@ -12,13 +12,13 @@ class User
 
 	function __construct()
 	{
-		static::init_db();
+		static::initDB();
 	}
 
 	// functions
 	function createUser($data, $type)
 	{
-		$validation = static::validate_data($data, $type);
+		$validation = static::validateData($data, $type);
 		if (!$validation['valid'])
 			return [
 				'result' => false,
@@ -62,13 +62,13 @@ class User
 	}
 
 	// helper functions
-	protected static function init_db(): void
+	protected static function initDB(): void
 	{
 		if (static::$db === null)
 			static::$db = Database::make();
 	}
 
-	private static function validate_data($data, $type)
+	private static function validateData($data, $type)
 	{
 		//
 		$required_input = [
@@ -115,7 +115,7 @@ class User
 			['Mote de pass', $data['password'], 6, 0],
 		];
 		foreach ($length_array as $length_item) {
-			$result = static::validate_length(
+			$result = static::validateLength(
 				$length_item[1],
 				$length_item[2],
 				$length_item[3]
@@ -136,7 +136,7 @@ class User
 		//
 		return ['valid' => true];
 	}
-	private static function validate_length($string, $min, $max): int
+	private static function validateLength($string, $min, $max): int
 	{
 		$len = strlen($string);
 
