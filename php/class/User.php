@@ -62,12 +62,6 @@ class User
 	}
 
 	// helper functions
-	protected static function initDB(): void
-	{
-		if (static::$db === null)
-			static::$db = Database::make();
-	}
-
 	private static function validateData($data, $type)
 	{
 		//
@@ -163,6 +157,11 @@ class User
 	}
 
 	//
+	protected static function initDB(): void
+	{
+		if (static::$db === null)
+			static::$db = Database::make();
+	}
 	private static function errorSQL($error)
 	{
 		die("SQL fatal error: $error");
