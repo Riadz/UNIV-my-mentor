@@ -3,8 +3,15 @@ require_once  '../autoload.php';
 
 use App\User;
 
-$User = new User();
+//
+session_start();
+if (isset($_SESSION['user'])) {
+	header('location: ../../');
+	exit;
+}
 
+//
+$User = new User();
 $result = $User->createUser($_POST, 'student');
 
 if (!$result['result']) {
@@ -14,8 +21,3 @@ if (!$result['result']) {
 
 header("location: ../../");
 exit;
-
-// session_start();
-// if (
-// 	isset($_SESSION['user']->id)
-// ) header('location: ../../');

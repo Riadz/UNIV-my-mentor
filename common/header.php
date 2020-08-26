@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +35,11 @@
 				<nav class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto">
 						<li><a href="/">Accueil</a></li>
+						<?php if (!isset($_SESSION['user'])) : ?>
+							<li><a href="/#acc-cta">Créer un compte</a></li>
+						<?php else : ?>
+							<li><a href="php/action/logout">Se Deconnecter</a></li>
+						<?php endif ?>
 					</ul>
 				</nav>
 			</div>

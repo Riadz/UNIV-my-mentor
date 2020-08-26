@@ -5,7 +5,7 @@ use App\User;
 
 //
 session_start();
-if (isset($_SESSION['user']['user_id'])) {
+if (isset($_SESSION['user'])) {
 	header('location: ../../');
 	exit;
 }
@@ -20,9 +20,6 @@ if (!$result['result']) {
 }
 
 $_SESSION['user'] = $result['user'];
-
-var_dump($_SESSION['user']);
-exit;
 
 header('location: ../../');
 exit;
