@@ -6,6 +6,13 @@ require('common/header.php')
 ?>
 
 <?php
+session_start();
+if (isset($_SESSION['user']['user_id'])) {
+	header('location: ../../');
+	exit;
+}
+
+//
 $signup_tab = $login_tab = '';
 if (isset($_GET['signup_tab']))
 	$signup_tab = 'active';
@@ -24,7 +31,7 @@ else
 			</div>
 		<?php endif ?>
 		<div>
-			<form class="auth-form student-login <?= $login_tab ?>" action="/" method="POST">
+			<form class="auth-form student-login <?= $login_tab ?>" action="php/action/login.php?type=student" method="POST">
 				<div class="input-container">
 					<input name="email" type="email" class="input" placeholder=" " required />
 					<label class="input-label">
@@ -43,6 +50,7 @@ else
 					<i class="fas fa-sign-in-alt fa-lg"></i>
 					Se Connecter
 				</button>
+				<input type="hidden" name="type" value="student">
 			</form>
 
 			<form class="auth-form student-signup <?= $signup_tab ?>" action="php/action/student_signup.php" method="POST">

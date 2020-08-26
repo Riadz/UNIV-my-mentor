@@ -8,7 +8,7 @@ $User = new User();
 $result = $User->createUser($_POST, 'student');
 
 if (!$result['result']) {
-	header("location: ../../student_auth.php?signup_tab&error={$result['reason']}");
+	header("location: ../../student_auth?signup_tab&error={$result['reason']}");
 	exit;
 }
 

@@ -5,6 +5,12 @@ $header_info = [
 require('common/header.php')
 ?>
 
+<?php
+session_start();
+if (isset($_SESSION['user']['user_id'])) {
+	var_dump($_SESSION['user']);
+}
+?>
 <main>
 	<section id="landing-page">
 		<div class="container">

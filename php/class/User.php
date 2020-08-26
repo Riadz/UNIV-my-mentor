@@ -16,9 +16,86 @@ class User
 	}
 
 	// functions
+	function loginUser($data, $type)
+	{
+		if (
+			!isset($type) ||
+			empty($type) ||
+			!in_array($type, ['student', 'teacher'])
+		)
+			return [
+				'result' => false,
+				'reason' => 'Type erronée',
+			];
+
+		//
+		$validation = static::validateLoginData($data);
+		if (!$validation['valid'])
+			return [
+				'result' => false,
+				'reason' => $validation['reason'],
+			];
+
+		//
+		if (!static::emailExists($data['email']))
+			return [
+				'result' => false,
+				'reason' => "Email n'existe pas '{$data['email']}'",
+			];
+
+		//
+		$prepared = static::$db->prepare(
+			"SELECT `user_id`, `password`, `first_name`, `last_name` FROM `user`
+			 WHERE `email` = :email
+			 LIMIT 1"
+		);
+		$result = $prepared->execute(['email' => $data['email']]);
+
+		if (!$result)
+			static::errorSQL($prepared->errorInfo()[2]);
+
+		$fetched_data = $prepared->fetch();
+		if (!password_verify($data['password'], $fetched_data['password']))
+			return [
+				'result' => false,
+				'reason' => "Mot de passe incorrect!",
+			];
+
+		//
+		$prepared = static::$db->prepare(
+			"SELECT * FROM $type
+			 WHERE `user_id` = :user_id
+			 LIMIT 1"
+		);
+		$result = $prepared->execute(['user_id' => $fetched_data['user_id']]);
+
+		if (!$result)
+			static::errorSQL($prepared->errorInfo()[2]);
+
+		//
+		$fetched_type_data = $prepared->fetch();
+		unset($fetched_type_data['user_id']);
+
+		//
+		$user_data = [
+			'user_id'    => $fetched_data['user_id'],
+			'email'      => $data['email'],
+			'first_name' => $fetched_data['first_name'],
+			'last_name'  => $fetched_data['last_name'],
+			'type'       => $type,
+			'type_data'  => $fetched_type_data,
+		];
+
+
+		//
+		return [
+			'result' => true,
+			'user'   => $user_data,
+		];
+	}
 	function createUser($data, $type)
 	{
-		$validation = static::validateData($data, $type);
+		$validation = static::validateSignupData($data, $type);
 		if (!$validation['valid'])
 			return [
 				'result' => false,
@@ -62,7 +139,23 @@ class User
 	}
 
 	// helper functions
-	private static function validateData($data, $type)
+	private static function validateLoginData($data)
+	{
+		$required_input = [
+			'email'      => 'Email',
+			'password'   => 'Mote de pass',
+		];
+		foreach ($required_input as $input => $alt)
+			if (!isset($data[$input]) || empty($data[$input]))
+				return [
+					'valid' => false,
+					'reason' => "Entrée manquante '$alt'",
+				];
+
+		//
+		return ['valid' => true];
+	}
+	private static function validateSignupData($data, $type)
 	{
 		//
 		$required_input = [
