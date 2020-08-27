@@ -20,6 +20,15 @@ else
 ?>
 <main class="auth">
 	<div class="auth-wrapper">
+		<div class="auth-header">
+			<h2>
+				<i class="fas fa-user-tie"></i>
+				<span>Pour Enseignants</span>
+			</h2>
+			<a href="student_auth?signup_tab" class="auth-header-link">
+				je suis un <strong>Étudiant</strong>
+			</a>
+		</div>
 		<div class="auth-toggle">
 			<button class="auth-toggle-btn <?= $login_tab ?>" target="teacher-login">Se Connecter</button>
 			<button class="auth-toggle-btn <?= $signup_tab ?>" target="teacher-signup">Crée Un Compte</button>

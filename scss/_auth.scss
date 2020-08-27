@@ -5,6 +5,35 @@
 
   min-height: calc(100vh - 108px);
 
+  &-header {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: -0.8rem;
+    margin-bottom: 2rem;
+
+    h2 {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      font-size: 2.5rem;
+      i {
+        color: var(--text-1);
+        font-size: 1.1em;
+        margin-right: 1rem;
+      }
+      span {
+        line-height: 30px;
+      }
+    }
+
+    &-link {
+      margin-top: 0.5rem;
+      align-self: flex-end;
+    }
+  }
+
   &-wrapper {
     width: 516px;
     padding: 2rem;
