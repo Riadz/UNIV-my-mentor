@@ -95,6 +95,10 @@ if (isset($_SESSION['user']['user_id'])) {
 						Lorem, ipsum dolor sit amet consectetur <strong>adipisicing</strong> elit. Neque et dolorum nemo,
 						illum laudantium reprehenderit <strong>excepturi</strong> quos aliquid cum quidem,
 						repudiandae unde nesciunt <strong>optio eius</strong> porro illo dolores consectetur! Iure.
+						<a href="student_auth?signup_tab" class="btn-1 mt-4 mx-auto">
+							<i class="fas fa-user-graduate mr-2"></i>
+							Créer un compte
+						</a>
 					</p>
 				</div>
 			</div>
@@ -112,6 +116,10 @@ if (isset($_SESSION['user']['user_id'])) {
 						Lorem, ipsum dolor sit amet consectetur <strong>adipisicing</strong> elit. Neque et dolorum nemo,
 						illum laudantium reprehenderit <strong>excepturi</strong> quos aliquid cum quidem,
 						repudiandae unde nesciunt <strong>optio eius</strong> porro illo dolores consectetur! Iure.
+						<a href="teacher_auth?signup_tab" class="btn-1 mt-4 mx-auto">
+							<i class="fas fa-user-tie mr-2"></i>
+							Créer un compte
+						</a>
 					</p>
 				</div>
 				<div class="col-lg-7 feature-carousel">
@@ -185,12 +193,12 @@ if (isset($_SESSION['user']['user_id'])) {
 			<div class="d-flex flex-column align-items-center">
 				<h3>Vous êtes un/une ?</h3>
 				<div class="acc-cta-container">
-					<a href="teacher_auth">
+					<a href="teacher_auth?signup_tab">
 						<i class="fas fa-user-tie"></i>
 						<span>Enseignant</span>
 					</a>
 					<div class="acc-cta-divivder">Ou</div>
-					<a href="student_auth">
+					<a href="student_auth?signup_tab">
 						<i class="fas fa-user-graduate"></i>
 						<span>Étudiant</span>
 					</a>
