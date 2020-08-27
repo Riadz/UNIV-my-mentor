@@ -49,14 +49,25 @@ if (isset($header_info['auth'])) {
 				</button>
 
 				<nav class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto">
-						<li><a href="/">Accueil</a></li>
-						<?php if (!isset($_SESSION['user'])) : ?>
+					<?php if (!isset($header_info['navigation'])) : ?>
+						<ul class="navbar-nav ml-auto">
+							<li><a href="/">Accueil</a></li>
+							<li><a href="#">A propos</a></li>
+							<li><a href="#">Contactez nous</a></li>
+							<li><a href="#">University</a></li>
 							<li><a href="/#acc-cta">Créer un compte</a></li>
-						<?php else : ?>
+						</ul>
+					<?php elseif ($header_info['navigation'] === 'student') : ?>
+						<ul class="navbar-nav student-nav ml-auto">
+							<li><a href="student_dashboard">Tableau d'bord</a></li>
 							<li><a href="php/action/logout">Se Deconnecter</a></li>
-						<?php endif ?>
-					</ul>
+						</ul>
+					<?php elseif ($header_info['navigation'] === 'teacher') : ?>
+						<ul class="navbar-nav teacher-nav ml-auto">
+							<li><a href="teacher_dashboard">Tableau d'bord</a></li>
+							<li><a href="php/action/logout">Se Deconnecter</a></li>
+						</ul>
+					<?php endif ?>
 				</nav>
 			</div>
 		</div>

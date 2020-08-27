@@ -4,13 +4,16 @@
 @import 'form';
 @import 'elements';
 
+html,
+body {
+  min-height: 100vh;
+}
 body {
   overflow-x: hidden;
   font-family: 'Merriweather Sans', sans-serif;
 
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
 :root {
   font-size: 16px;

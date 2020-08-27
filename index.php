@@ -7,7 +7,8 @@ require('common/header.php')
 
 <?php
 if (isset($_SESSION['user'])) {
-	var_dump($_SESSION['user']);
+	header("location: {$_SESSION['user']['type']}_dashboard");
+	exit;
 }
 ?>
 <main>
