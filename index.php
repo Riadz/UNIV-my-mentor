@@ -6,7 +6,7 @@ require('common/header.php')
 ?>
 
 <?php
-if (isset($_SESSION['user']['user_id'])) {
+if (isset($_SESSION['user'])) {
 	var_dump($_SESSION['user']);
 }
 ?>

@@ -1,5 +1,21 @@
 <?php
+require_once  'php/autoload.php';
 session_start();
+
+// auth
+if (isset($header_info['auth'])) {
+
+	if (!isset($_SESSION['user'])) {
+		header("location: {$header_info['auth']}_auth");
+		exit;
+	}
+
+	if ($header_info['auth'] !== $_SESSION['user']['type']) {
+		header('location: error/403');
+		exit;
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
