@@ -185,7 +185,7 @@ if (isset($_SESSION['user']['user_id'])) {
 			<div class="d-flex flex-column align-items-center">
 				<h3>Vous êtes un/une ?</h3>
 				<div class="acc-cta-container">
-					<a href="#">
+					<a href="teacher_auth">
 						<i class="fas fa-user-tie"></i>
 						<span>Enseignant</span>
 					</a>
