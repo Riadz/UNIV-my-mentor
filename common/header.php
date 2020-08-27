@@ -59,12 +59,12 @@ if (isset($header_info['auth'])) {
 						</ul>
 					<?php elseif ($header_info['navigation'] === 'student') : ?>
 						<ul class="navbar-nav student-nav ml-auto">
-							<li><a href="student_dashboard">Tableau d'bord</a></li>
+							<li><a href="/student_dashboard">Tableau d'bord</a></li>
 							<li><a href="php/action/logout">Se Deconnecter</a></li>
 						</ul>
 					<?php elseif ($header_info['navigation'] === 'teacher') : ?>
 						<ul class="navbar-nav teacher-nav ml-auto">
-							<li><a href="teacher_dashboard">Tableau d'bord</a></li>
+							<li><a href="/teacher_dashboard">Tableau d'bord</a></li>
 							<li><a href="php/action/logout">Se Deconnecter</a></li>
 						</ul>
 					<?php endif ?>
