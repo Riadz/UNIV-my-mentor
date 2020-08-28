@@ -25,7 +25,7 @@
     }
   }
 
-  .navbar-nav li {
+  .navbar-nav li a {
     font-size: 18px;
     line-height: 50px;
 
@@ -37,10 +37,16 @@
     }
     transition: opacity 0.3s ease;
   }
-  .navbar-nav li:not(:last-child) {
+  .navbar-nav li:not(:last-child) a {
     margin-right: 40px;
+    @media (max-width: 991.98px) {
+      margin-right: 0;
+    }
   }
-  .navbar-nav .active {
+  .navbar-nav li {
+    text-align: right;
+  }
+  .navbar-nav .active a {
     font-weight: 500;
     opacity: 1;
   }

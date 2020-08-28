@@ -61,6 +61,12 @@ main {
   padding-bottom: 2rem;
   background-color: #fff;
 }
+// buttons
+button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
 // anchor tag
 a {
   color: var(--text-1);

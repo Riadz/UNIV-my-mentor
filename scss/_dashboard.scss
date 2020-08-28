@@ -1,0 +1,180 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 108px);
+
+  &-section {
+    padding-top: 2rem;
+
+    &-container {
+      padding: 1rem;
+      border-radius: 12px;
+      background-color: var(--btn-auth-bg);
+    }
+
+    &-header {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.posts {
+  display: flex;
+  flex-wrap: wrap;
+
+  &-card-container {
+    margin-bottom: 30px;
+  }
+
+  &-card {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #fff;
+
+    &-actions {
+      display: flex;
+      justify-content: flex-end;
+
+      &-btn {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 1.2rem;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba($color: #000, $alpha: 0.2);
+
+        color: var(--text-1);
+        &:hover {
+          color: var(--text-1-hover);
+          background-color: rgba($color: #000, $alpha: 0.05);
+        }
+
+        & + & {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+
+    &-title {
+      margin-top: 0.6rem;
+
+      font-family: 'Alegreya Sans';
+      font-style: italic;
+      font-weight: 900;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    &-info {
+      margin-top: 0.6rem;
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      &-fac {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 0.4rem;
+
+        padding: 0.4rem;
+        border-radius: 8px;
+        border: 1px solid rgba($color: #000, $alpha: 0.2);
+
+        span {
+          font-size: 1.3rem;
+        }
+
+        img {
+          width: 60px;
+          height: auto;
+        }
+      }
+
+      &-dep {
+        flex-grow: 1;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0.4rem;
+
+        font-size: 1.3rem;
+        padding: 0.4rem;
+        border-radius: 8px;
+        border: 1px solid rgba($color: #000, $alpha: 0.2);
+      }
+    }
+
+    &-themes {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1.5rem;
+
+      h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+      }
+      &-container {
+        display: flex;
+      }
+      &-card {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        margin: 0.2rem;
+        padding: 0.5rem;
+        border-radius: 12px;
+        color: #fff;
+
+        & span {
+          font-size: 3rem;
+        }
+
+        @for $i from 1 through 5 {
+          &:nth-child(#{$i}) {
+            background-color: var(--theme-#{$i});
+          }
+        }
+      }
+    }
+  }
+
+  &-add-card {
+    height: 100%;
+    min-height: 250px;
+    width: 100%;
+    border-radius: 12px;
+    border: 3px dashed var(--text-1);
+
+    &-btn {
+      border-radius: 12px;
+
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: var(--text-1);
+      font-size: 5rem;
+
+      &:hover {
+        color: var(--text-1-hover);
+        background-color: rgba($color: #000, $alpha: 0.1);
+      }
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+  }
+}
