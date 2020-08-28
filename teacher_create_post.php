@@ -12,7 +12,7 @@ require('common/header.php')
 	<section class="dashboard-section">
 		<div class="container dashboard-section-container">
 			<h2 class="dashboard-section-header text-center">Créer Une Annonce</h2>
-			<form class="create-post-form row" action="/">
+			<form action="/php/action/teacher_create_post.php" method="POST" class="create-post-form row">
 				<!-- Info -->
 				<div class="col-12 mb-n2">
 					<h3 class="dashboard-section-header m-0">Information</h3>
@@ -56,7 +56,7 @@ require('common/header.php')
 					</div>
 				</div>
 
-				<!-- Themes -->
+				<!-- themes -->
 				<div class="col-12 mt-4">
 					<h3 class="dashboard-section-header">Themes</h3>
 				</div>
@@ -86,13 +86,21 @@ require('common/header.php')
 					</div>
 				</div>
 
-				<!-- Add theme -->
+				<!-- add theme btn -->
 				<div id="add-theme-tab" class="posts-card-container col-lg-6">
 					<div class="posts-add-card">
 						<button id="add-theme-btn" class="posts-add-card-btn" type="button">
 							<i class="fas fa-plus-circle"></i>
 						</button>
 					</div>
+				</div>
+
+				<!-- submit btn -->
+				<div class="col-12 ">
+					<button class="btn btn-1 mx-auto mt-4" type="submit">
+						<i class="fas fa-plus fa-lg mr-2"></i>
+						Créer L'annonce
+					</button>
 				</div>
 			</form>
 		</div>
