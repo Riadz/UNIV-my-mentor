@@ -87,9 +87,9 @@ require('common/header.php')
 				</div>
 
 				<!-- Add theme -->
-				<div class="posts-card-container col-lg-6">
+				<div id="add-theme-tab" class="posts-card-container col-lg-6">
 					<div class="posts-add-card">
-						<button type="button" class="posts-add-card-btn">
+						<button id="add-theme-btn" class="posts-add-card-btn" type="button">
 							<i class="fas fa-plus-circle"></i>
 						</button>
 					</div>

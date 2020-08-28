@@ -216,4 +216,11 @@
 .add_post.dashboard .posts-card {
   background-color: #ffffff88;
   box-shadow: 0 0 10px rgba($color: #000, $alpha: 0.1);
+
+  .posts-card-header {
+    height: 35px;
+  }
+  .delete-theme-btn i {
+    pointer-events: none;
+  }
 }
