@@ -19,5 +19,5 @@ if (!$result['result']) {
 	exit;
 }
 
-header("location: ../../");
+header("location: ../../teacher_auth");
 exit;

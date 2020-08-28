@@ -22,6 +22,12 @@ class Teacher extends User
 			];
 
 		//
+		$fields = [
+			'teacher_id' => $data['teacher_id'],
+			'dep_id' => '',
+			'post_title' => '',
+			'post_description' => '',
+		];
 		$prepared = static::$db->prepare(
 			"INSERT INTO `post`
 			 (`teacher_id`, `dep_id`, `post_title`, `post_description`)
