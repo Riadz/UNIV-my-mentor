@@ -60,25 +60,24 @@ require('common/header.php')
 				<div class="col-12 mt-4">
 					<h3 class="dashboard-section-header">Themes</h3>
 				</div>
-				<div class="posts-card-container col-lg-6">
+				<div id="theme-1" class="posts-card-container col-lg-6">
 					<div class="posts-card">
 						<div class="posts-card-header">
 							<div>
 								<h5>Theme 1<i class="mandatory-star">*</i></h5>
 							</div>
-
 							<div>
 							</div>
 						</div>
 						<div class="input-container">
-							<input name="title" type="text" class="input" placeholder=" " required />
+							<input name="theme_1_title" type="text" class="input" placeholder=" " required />
 							<label class="input-label">
 								Titre<i class="mandatory-star">*</i>
 							</label>
 							<div class="input-underline"></div>
 						</div>
 						<div class="input-container">
-							<textarea name="description" type="text" class="input" placeholder=" " required></textarea>
+							<textarea name="theme_1_description" type="text" class="input" placeholder=" " required></textarea>
 							<label class="input-label">
 								Description<i class="mandatory-star">*</i>
 							</label>
@@ -90,9 +89,9 @@ require('common/header.php')
 				<!-- Add theme -->
 				<div class="posts-card-container col-lg-6">
 					<div class="posts-add-card">
-						<a href="teacher_create_post" class="posts-add-card-btn">
+						<button type="button" class="posts-add-card-btn">
 							<i class="fas fa-plus-circle"></i>
-						</a>
+						</button>
 					</div>
 				</div>
 			</form>
