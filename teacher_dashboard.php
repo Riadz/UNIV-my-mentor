@@ -77,9 +77,9 @@ require('common/header.php')
 				<!-- add post -->
 				<div class="posts-card-container col-lg-6">
 					<div class="posts-add-card">
-						<button class="posts-add-card-btn">
+						<a href="teacher_create_post" class="posts-add-card-btn">
 							<i class="fas fa-plus-circle"></i>
-						</button>
+						</a>
 					</div>
 				</div>
 			</div>

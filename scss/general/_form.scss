@@ -33,7 +33,7 @@
 }
 .input:focus + .input-label,
 .input:not(:placeholder-shown) + .input-label {
-  transform: translate(-0.5rem, -70%);
+  transform: translate(-0.5rem, -80%);
 }
 
 .input-underline {
@@ -57,7 +57,7 @@
 // other
 textarea {
   resize: vertical;
-  height: 226px;
+  height: 200px;
 }
 .mandatory-star {
   color: red;
