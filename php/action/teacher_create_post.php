@@ -12,5 +12,5 @@ $result = $Teacher->createPost(
 	$_SESSION['user']['type_data']['teacher_id']
 );
 
-var_dump($result);
+header('location: ../../teacher_dashboard');
 exit;

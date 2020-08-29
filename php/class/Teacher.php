@@ -68,6 +68,23 @@ class Teacher extends User
 		return ['result' => true];
 	}
 
+	function getTeacherDashboardPosts($teacher_id)
+	{
+		$result = static::$db->query(
+			"SELECT `post_id`, `status`, `post_year`, `post_title`, `dep`.`dep_name`, `fac`.`fac_name`, `fac`.`fac_id`
+			 FROM `post`
+			 JOIN `dep` ON `post`.`dep_id` = `dep`.`dep_id`
+			 JOIN `fac` ON `dep`.`fac_id` = `fac`.`fac_id`
+
+			 WHERE `teacher_id` = $teacher_id"
+		);
+		if (!$result)
+			static::errorSQL($result->errorInfo()[2]);
+
+		//
+		return $result->fetchAll();
+	}
+
 	function getFacArray()
 	{
 		$result = static::$db->query(
