@@ -26,6 +26,7 @@ $('.auth-toggle-btn').on('click', function () {
 var themeTabsCount = 1;
 $('#add-theme-btn').click(function () {
   themeTabsCount++;
+  $('.create-post-form .delete-theme-btn').hide('fast');
   $('#add-theme-tab').before(`
 <div id="theme-${themeTabsCount}" class="posts-card-container col-lg-6">
 <div class="posts-card">
@@ -61,6 +62,7 @@ $('.create-post-form').on('click', '.delete-theme-btn', function (e) {
   let target = $(e.target).attr('target');
   $(`#theme-${target}`).remove();
   themeTabsCount--;
+  $(`.create-post-form #theme-${themeTabsCount} .delete-theme-btn`).show('fast');
 })
 /* ====== Bootstrap ====== */
 $(function () {

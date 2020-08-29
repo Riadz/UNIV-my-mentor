@@ -8,6 +8,9 @@ $header_info = [
 require('common/header.php')
 ?>
 
+<?php
+
+?>
 <main class="flex-grow-1 dashboard add_post">
 	<section class="dashboard-section">
 		<div class="container dashboard-section-container">
