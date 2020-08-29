@@ -10,6 +10,12 @@ require('common/header.php')
 
 <?php
 
+use App\Teacher;
+
+$Teacher = new Teacher();
+
+$facs = $Teacher->getFacArray();
+$deps = $Teacher->getDepArray();
 ?>
 <main class="flex-grow-1 dashboard add_post">
 	<section class="dashboard-section">
@@ -30,8 +36,11 @@ require('common/header.php')
 					</div>
 					<div class="input-container">
 						<select name="fac" class="input">
-							<option value="1">Sci ingenorat</option>
-							<option value="2">Sci biologie</option>
+							<?php foreach ($facs as $fac) : ?>
+								<option value="<?= $fac['fac_id'] ?>">
+									<?= $fac['fac_name'] ?>
+								</option>
+							<?php endforeach ?>
 						</select>
 						<label class="input-label">
 							Faculté<i class="mandatory-star">*</i>
@@ -40,11 +49,27 @@ require('common/header.php')
 					</div>
 					<div class="input-container">
 						<select name="dep" class="input">
-							<option value="1">Informatique</option>
-							<option value="2">Sci Teqnique</option>
+							<?php foreach ($deps as $dep) : ?>
+								<option value="<?= $dep['dep_id'] ?>" fac-id="<?= $dep['fac_id'] ?>">
+									<?= $dep['dep_name'] ?>
+								</option>
+							<?php endforeach ?>
 						</select>
 						<label class="input-label">
 							Departement<i class="mandatory-star">*</i>
+						</label>
+						<div class="input-underline"></div>
+					</div>
+					<div class="input-container">
+						<select name="year" class="input">
+							<option value="1">1er Licence</option>
+							<option value="2">2eme Licence</option>
+							<option value="3">3eme Licence</option>
+							<option value="4">1er Master</option>
+							<option value="5">2eme Master</option>
+						</select>
+						<label class="input-label">
+							Année<i class="mandatory-star">*</i>
 						</label>
 						<div class="input-underline"></div>
 					</div>

@@ -24,7 +24,7 @@ class Teacher extends User
 		//
 		$fields = [
 			'teacher_id' => $data['teacher_id'],
-			'dep_id' => '',
+			'dep_id' => $data['teacher_id'],
 			'post_title' => '',
 			'post_description' => '',
 		];
@@ -42,6 +42,29 @@ class Teacher extends User
 		return ['result' => true];
 	}
 
+	function getFacArray()
+	{
+		$result = static::$db->query(
+			"SELECT * FROM `fac`"
+		);
+		if (!$result)
+			static::errorSQL($result->errorInfo()[2]);
+
+		//
+		return $result->fetchAll();
+	}
+	function getDepArray()
+	{
+		$result = static::$db->query(
+			"SELECT * FROM `dep`"
+		);
+		if (!$result)
+			static::errorSQL($result->errorInfo()[2]);
+
+		//
+		return $result->fetchAll();
+	}
+
 	// helper functions
 	private static function validatePostData($data)
 	{
@@ -50,6 +73,7 @@ class Teacher extends User
 			'description'         => 'Description',
 			'fac'                 => 'Faculté',
 			'dep'                 => 'Departement',
+			'year'                => 'Année',
 			'theme_1_title'       => 'Titre du 1er Theme',
 			'theme_1_description' => 'Description du 1er Theme',
 		];

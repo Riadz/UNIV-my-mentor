@@ -63,7 +63,31 @@ $('.create-post-form').on('click', '.delete-theme-btn', function (e) {
   $(`#theme-${target}`).remove();
   themeTabsCount--;
   $(`.create-post-form #theme-${themeTabsCount} .delete-theme-btn`).show('fast');
+  if (!$('#add-theme-tab').is(":visible"))
+    $('#add-theme-tab').show('fast');
 })
+
+// faculté/departement select
+updateDepSelect();
+$('select[name="fac"]')
+  .change(function () {
+    updateDepSelect();
+  });
+function updateDepSelect() {
+  let facId = $('select[name="fac"]').val();
+
+  $('select[name="dep"]')
+    .children()
+    .prop('selected', false)
+    .hide();
+
+  $('select[name="dep"]')
+    .children(`option[fac-id="${facId}"]`)
+    .show()
+    .first()
+    .prop('selected', true);
+}
+
 /* ====== Bootstrap ====== */
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
