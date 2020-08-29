@@ -12,7 +12,7 @@ class Teacher extends User
 	}
 
 	// functions
-	function createPost($data)
+	function createPost($data, $teacher_id)
 	{
 		$validation = static::validatePostData($data);
 		if (!$validation['valid'])
@@ -21,23 +21,49 @@ class Teacher extends User
 				'reason' => $validation['reason'],
 			];
 
-		//
+		// inserting post
 		$fields = [
-			'teacher_id' => $data['teacher_id'],
-			'dep_id' => $data['teacher_id'],
-			'post_title' => '',
-			'post_description' => '',
+			'teacher_id'          => $teacher_id,
+			'dep_id'              => $data['dep'],
+			'post_year'           => $data['year'],
+			'post_title'          => $data['title'],
+			'post_description'    => $data['description'],
 		];
 		$prepared = static::$db->prepare(
 			"INSERT INTO `post`
-			 (`teacher_id`, `dep_id`, `post_title`, `post_description`)
+			 (`teacher_id`, `dep_id`, `post_year`, `post_title`, `post_description`)
 			 VALUES
-			 (:teacher_id, :dep_id, :post_title, :post_description)"
+			 (:teacher_id, :dep_id, :post_year, :post_title, :post_description)"
 		);
 		$result = $prepared->execute($fields);
 		if (!$result)
 			static::errorSQL($prepared->errorInfo()[2]);
 
+		// inserting themes
+		$post_id = static::$db->lastInsertId();
+		for ($i = 1; $i <= 5; $i++) {
+			if (
+				isset($data["theme_title_$i"]) &&
+				!empty($data["theme_title_$i"])
+			) {
+				$fields = [
+					'post_id'           => $post_id,
+					'theme_title'       => $data["theme_title_$i"],
+					'theme_description' => $data["theme_description_$i"],
+				];
+				$prepared = static::$db->prepare(
+					"INSERT INTO `theme`
+					 (`post_id`, `theme_title`, `theme_description`)
+					 VALUES
+					 (:post_id, :theme_title, :theme_description)"
+				);
+				$result = $prepared->execute($fields);
+				if (!$result)
+					static::errorSQL($prepared->errorInfo()[2]);
+			} else {
+				break;
+			}
+		}
 		//
 		return ['result' => true];
 	}
@@ -74,8 +100,8 @@ class Teacher extends User
 			'fac'                 => 'Faculté',
 			'dep'                 => 'Departement',
 			'year'                => 'Année',
-			'theme_1_title'       => 'Titre du 1er Theme',
-			'theme_1_description' => 'Description du 1er Theme',
+			'theme_title_1'       => 'Titre du 1er Theme',
+			'theme_description_1' => 'Description du 1er Theme',
 		];
 		foreach ($required_input as $input => $alt)
 			if (!isset($data[$input]) || empty($data[$input]))

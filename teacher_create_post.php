@@ -98,14 +98,14 @@ $deps = $Teacher->getDepArray();
 							</div>
 						</div>
 						<div class="input-container">
-							<input name="theme_1_title" type="text" class="input" placeholder=" " required />
+							<input name="theme_title_1" type="text" class="input" placeholder=" " required />
 							<label class="input-label">
 								Titre<i class="mandatory-star">*</i>
 							</label>
 							<div class="input-underline"></div>
 						</div>
 						<div class="input-container">
-							<textarea name="theme_1_description" type="text" class="input" placeholder=" " required></textarea>
+							<textarea name="theme_description_1" type="text" class="input" placeholder=" " required></textarea>
 							<label class="input-label">
 								Description<i class="mandatory-star">*</i>
 							</label>

@@ -37,14 +37,14 @@ $('#add-theme-btn').click(function () {
     </div></button>
 	</div>
 	<div class="input-container">
-		<input name="theme_${themeTabsCount}_title" type="text" class="input" placeholder=" " required />
+		<input name="theme_title_${themeTabsCount}" type="text" class="input" placeholder=" " required />
 		<label class="input-label">
 			Titre<i class="mandatory-star">*</i>
 		</label>
 		<div class="input-underline"></div>
 	</div>
 	<div class="input-container">
-		<textarea name="theme_${themeTabsCount}_description" type="text" class="input" placeholder=" " required></textarea>
+		<textarea name="theme_description_${themeTabsCount}" type="text" class="input" placeholder=" " required></textarea>
 		<label class="input-label">
 			Description<i class="mandatory-star">*</i>
 		</label>

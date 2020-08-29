@@ -255,7 +255,7 @@ class User
 		if (static::$db === null)
 			static::$db = Database::make();
 	}
-	private static function errorSQL($error)
+	protected static function errorSQL($error)
 	{
 		die("SQL fatal error: $error");
 	}
