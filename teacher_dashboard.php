@@ -1,6 +1,6 @@
 <?php
 $header_info = [
-	'title' => 'Tableau d\'bord | Enseignants',
+	'title' => 'Mes Annonces | Enseignants',
 
 	'auth'       => 'teacher',
 	'navigation' => 'teacher',

@@ -64,7 +64,7 @@ if (isset($header_info['auth'])) {
 						</ul>
 					<?php elseif ($header_info['navigation'] === 'teacher') : ?>
 						<ul class="navbar-nav teacher-nav ml-auto">
-							<li><a href="/teacher_dashboard">Tableau d'bord</a></li>
+							<li><a href="/teacher_dashboard">Mes Annonces</a></li>
 							<li><a href="/teacher_create_post">Créer Une Annonce</a></li>
 							<li><a href="php/action/logout">Se Deconnecter</a></li>
 						</ul>
