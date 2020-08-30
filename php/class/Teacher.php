@@ -95,7 +95,25 @@ class Teacher extends User
 			static::errorSQL($result->errorInfo()[2]);
 
 		//
-		return $result->fetchAll();
+		$posts = $result->fetchAll();
+		foreach ($posts as &$post) {
+			$result = static::$db->query(
+				"SELECT `theme_id`,
+				 (SELECT COUNT(`mentorship_id`) FROM `mentorship`
+				  WHERE `mentorship`.`theme_id` = `theme`.`theme_id`)
+				 as `mentorship_count`
+				 FROM
+				 `theme` WHERE `post_id` = {$post['post_id']}"
+			);
+			if (!$result)
+				static::errorSQL($result->errorInfo()[2]);
+
+			//
+			$post['themes'] = $result->fetchAll();
+		}
+
+		//
+		return $posts;
 	}
 
 	function getFacArray()

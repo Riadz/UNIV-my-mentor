@@ -39,7 +39,7 @@ $posts =
 									<a href="#" title="Modifier" class="posts-card-actions-btn">
 										<i class="fas fa-pencil-alt"></i>
 									</a>
-									<button title="supprimer" class="posts-card-actions-btn">
+									<button data-post-id="<?= $post['post_id'] ?>" data-mentorship-count="<?= $post['mentorship_count'] ?>" title="supprimer" class="posts-card-actions-btn" data-toggle="modal" data-target="#delet-post-modal">
 										<i class="fas fa-times"></i>
 									</button>
 								</div>
@@ -71,28 +71,17 @@ $posts =
 							<div class="posts-card-themes">
 								<h3>Etudiant encadré dans chaque theme</h3>
 								<div class="posts-card-themes-container">
-									<div class="posts-card-themes-card">
-										<h4>theme 1</h4>
-										<span>5</span>
-									</div>
-									<div class="posts-card-themes-card">
-										<h4>theme 2</h4>
-										<span>4</span>
-									</div>
-									<div class="posts-card-themes-card">
-										<h4>theme 3</h4>
-										<span>0</span>
-									</div>
-									<div class="posts-card-themes-card">
-										<h4>theme 4</h4>
-										<span>2</span>
-									</div>
+									<?php foreach ($post['themes'] as $theme) : ?>
+										<div class="posts-card-themes-card theme-<?= $theme['theme_id'] ?>">
+											<h4>theme</h4>
+											<span><?= $theme['mentorship_count'] ?></span>
+										</div>
+									<?php endforeach ?>
 								</div>
 							</div>
 						</div>
 					</div>
 				<?php endforeach ?>
-
 
 				<!-- add post -->
 				<div class="posts-card-container col-lg-6">
@@ -106,6 +95,50 @@ $posts =
 		</div>
 	</section>
 </main>
+<!-- delete modal -->
+<div class="modal fade" id="delet-post-modal">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Supprimer L'Annonces</h5>
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<p>Étes-vous certain de vouloir supprimer cette announce ?</p>
+				<p>
+					ID de l'announce: <strong id="modal-post-id-text">12</strong><br>
+					Nombre d'ètudiants encadrés: <strong id="modal-mentorship-count">4</strong>
+				</p>
+			</div>
+
+			<div class="modal-footer">
+				<form action="/php/action/teacher_delete_post.php" method="POST">
+					<input id="modal-post-id-input" name="post_id" type="hidden" value="">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+					<button type="submit" class="btn btn-danger">Supprimer</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
 <?php
 require('common/footer.php')
 ?>
+
+<!-- delete modal script -->
+<script>
+	$('#delet-post-modal').on('show.bs.modal', function(event) {
+		let button = $(event.relatedTarget);
+		let postId = button.data('post-id');
+		let mentorshipCount = button.data('mentorship-count');
+
+		let modal = $(this);
+		modal.find('#modal-post-id-text').text(postId);
+		modal.find('#modal-mentorship-count').text(mentorshipCount);
+		modal.find('#modal-post-id-input').val(mentorshipCount);
+	})
+</script>
