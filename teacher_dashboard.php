@@ -138,7 +138,7 @@ require('common/footer.php')
 
 		let modal = $(this);
 		modal.find('#modal-post-id-text').text(postId);
+		modal.find('#modal-post-id-input').val(postId);
 		modal.find('#modal-mentorship-count').text(mentorshipCount);
-		modal.find('#modal-post-id-input').val(mentorshipCount);
 	})
 </script>

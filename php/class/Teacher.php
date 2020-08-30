@@ -64,18 +64,30 @@ class Teacher extends User
 				break;
 			}
 		}
+
 		//
 		return ['result' => true];
 	}
-	function deletePost($post_id)
+	function deletePost($post_id, $teacher_id)
 	{
+		if (!static::postBelongsTo($post_id, $teacher_id))
+			return [
+				'result' => false,
+				'reason' => 'unauthorized',
+			];
+
+		//
 		$prepared = static::$db->prepare(
-			"INSERT INTO `post`
-			 (`teacher_id`, `dep_id`, `post_year`, `post_title`, `post_description`)
-			 VALUES
-			 (:teacher_id, :dep_id, :post_year, :post_title, :post_description)"
+			"DELETE FROM `post` WHERE
+			 `post_id` = :post_id
+			 LIMIT 1"
 		);
 		$result = $prepared->execute(['post_id' => $post_id]);
+		if (!$result)
+			static::errorSQL($result->errorInfo()[2]);
+
+		//
+		return ['result' => true];
 	}
 
 	function getTeacherDashboardPosts($teacher_id)
@@ -160,6 +172,24 @@ class Teacher extends User
 
 		//
 		return ['valid' => true];
+	}
+	private static function postBelongsTo($post_id, $teacher_id)
+	{
+		$prepared = static::$db->prepare(
+			"SELECT `post_id` FROM `post` WHERE
+			 `post_id` = :post_id AND
+			 `teacher_id` = :teacher_id
+			 LIMIT 1"
+		);
+		$result = $prepared->execute([
+			'post_id'    => $post_id,
+			'teacher_id' => $teacher_id,
+		]);
+		if (!$result)
+			static::errorSQL($result->errorInfo()[2]);
+
+		//
+		return (bool) $prepared->rowCount();
 	}
 
 	static $years_string = [

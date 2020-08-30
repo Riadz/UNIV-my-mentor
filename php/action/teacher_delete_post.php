@@ -7,13 +7,18 @@ use App\Teacher;
 
 $Teacher = new Teacher();
 
-var_dump($_POST);
-exit;
-
 $result = $Teacher->deletePost(
 	$_POST['post_id'],
 	$_SESSION['user']['type_data']['teacher_id']
 );
 
-header('location: ../../teacher_dashboard');
-exit;
+if ($result['result']) {
+	header('location: ../../teacher_dashboard');
+	exit;
+} elseif ($result['reason'] == 'unauthorized') {
+	header('location: ../../error/403');
+	exit;
+} else {
+	echo 'unexpected error';
+	exit;
+}

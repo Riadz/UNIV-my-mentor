@@ -12,5 +12,10 @@ $result = $Teacher->createPost(
 	$_SESSION['user']['type_data']['teacher_id']
 );
 
-header('location: ../../teacher_dashboard');
-exit;
+if ($result['result']) {
+	header('location: ../../teacher_dashboard');
+	exit;
+} else {
+	echo 'unexpected error';
+	exit;
+}
