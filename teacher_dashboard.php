@@ -29,7 +29,7 @@ $posts =
 							<div class="posts-card-header">
 								<div class="posts-card-status">
 									<h3>Ètat: </h3>
-									<span class="status-ouvert"><?= $post['status'] ?> | id:<?= $post['post_id'] ?></span>
+									<span class="status-<?= $post['status'] ?>"><?= $post['status'] ?></span>
 								</div>
 
 								<div class="posts-card-actions">
@@ -49,15 +49,23 @@ $posts =
 							</span>
 							<div class="posts-card-info row">
 								<div class="col-6">
-									<h3>Faculté:</h3>
+									<h3><i class="fas fa-city fa-2x fa-fw"></i> Faculté:</h3>
 									<div class="posts-card-info-fac">
 										<span><?= $post['fac_name'] ?></span>
 										<img src="img/facs/fac-<?= $post['fac_id'] ?>.png" alt="">
 									</div>
 								</div>
 								<div class="col-6 d-flex flex-column">
-									<h3>Departement:</h3>
-									<span class="posts-card-info-dep"><?= $post['dep_name'] ?></span>
+									<h3><i class="fas fa-building fa-2x fa-fw"></i> Departement:</h3>
+									<span class="posts-card-info-text"><?= $post['dep_name'] ?></span>
+								</div>
+								<div class="col-6 d-flex flex-column">
+									<h3><i class="fas fa-graduation-cap fa-2x fa-fw"></i> Année:</h3>
+									<span class="posts-card-info-text"><?= $Teacher->yearToString($post['post_year']) ?></span>
+								</div>
+								<div class="col-6 d-flex flex-column">
+									<h3><i class="fas fa-user-graduate fa-2x fa-fw"></i> Étudiants Encadrés:</h3>
+									<span class="posts-card-info-text"><?= $post['mentorship_count'] ?></span>
 								</div>
 							</div>
 							<div class="posts-card-themes">

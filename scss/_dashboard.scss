@@ -99,6 +99,11 @@
     }
 
     &-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
       min-height: 96px;
       margin-top: 0.9rem;
 
@@ -106,7 +111,6 @@
       font-style: italic;
       font-weight: 900;
       font-size: 2rem;
-      text-align: center;
     }
 
     &-info {
@@ -119,7 +123,6 @@
       &-fac {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         margin-top: 0.4rem;
 
         padding: 0.4rem;
@@ -127,6 +130,8 @@
         border: 1px solid rgba($color: #000, $alpha: 0.2);
 
         span {
+          flex-grow: 1;
+          text-align: center;
           font-size: 1.3rem;
         }
 
@@ -136,18 +141,28 @@
         }
       }
 
-      &-dep {
+      &-text {
         flex-grow: 1;
 
         display: flex;
         align-items: center;
         justify-content: center;
         margin-top: 0.4rem;
+        min-height: 74px;
 
         font-size: 1.3rem;
         padding: 0.4rem;
         border-radius: 8px;
-        border: 1px solid rgba($color: #000, $alpha: 0.2);
+        border: 1px solid rgba($color: #000, $alpha: 0.1);
+      }
+
+      > div {
+        margin-top: 1rem;
+
+        i {
+          color: var(--text-1);
+          margin-left: 0.3rem;
+        }
       }
     }
 

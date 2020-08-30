@@ -67,11 +67,24 @@ class Teacher extends User
 		//
 		return ['result' => true];
 	}
+	function deletePost($post_id)
+	{
+		$prepared = static::$db->prepare(
+			"INSERT INTO `post`
+			 (`teacher_id`, `dep_id`, `post_year`, `post_title`, `post_description`)
+			 VALUES
+			 (:teacher_id, :dep_id, :post_year, :post_title, :post_description)"
+		);
+		$result = $prepared->execute(['post_id' => $post_id]);
+	}
 
 	function getTeacherDashboardPosts($teacher_id)
 	{
 		$result = static::$db->query(
-			"SELECT `post_id`, `status`, `post_year`, `post_title`, `dep`.`dep_name`, `fac`.`fac_name`, `fac`.`fac_id`
+			"SELECT
+			 `post_id`, `fac`.`fac_id`, `fac`.`fac_name`, `dep`.`dep_name`, `status`, `post_year`, `post_title`,
+			 (SELECT count(`mentorship_id`) FROM `mentorship`
+			  WHERE `mentorship`.`post_id` = `post`.`post_id`) AS `mentorship_count`
 			 FROM `post`
 			 JOIN `dep` ON `post`.`dep_id` = `dep`.`dep_id`
 			 JOIN `fac` ON `dep`.`fac_id` = `fac`.`fac_id`
@@ -129,5 +142,17 @@ class Teacher extends User
 
 		//
 		return ['valid' => true];
+	}
+
+	static $years_string = [
+		1 => '1er Licence',
+		2 => '2eme Licence',
+		3 => '3eme Licence',
+		4 => '1er Master',
+		5 => '2eme Master',
+	];
+	public function yearToString($year)
+	{
+		return static::$years_string[$year];
 	}
 }
