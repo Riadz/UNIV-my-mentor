@@ -2,14 +2,15 @@
 
 <?php
 $header_info = [
-	'title' => 'Tableau d\'bord | Etudiant',
+	'title' => 'Recherche | Etudiant',
 
+	'auth'       => 'student',
 	'navigation' => 'student',
 ];
 require('common/header.php')
 ?>
 <main>
-	student dashboard
+
 </main>
 <?php
 require('common/footer.php')

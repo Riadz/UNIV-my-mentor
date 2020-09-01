@@ -15,8 +15,13 @@ $User = new User();
 $result = $User->loginUser($_POST, $_GET['type']);
 
 if (!$result['result']) {
-	header("location: ../../{$_POST['type']}_auth?error={$result['reason']}");
-	exit;
+	if ($result['reason'] == 'alt') {
+		header("location: ../../{$result['alt']}_auth?error={$result['alt_reason']}");
+		exit;
+	} else {
+		header("location: ../../{$_POST['type']}_auth?error={$result['reason']}");
+		exit;
+	}
 }
 
 $_SESSION['user'] = $result['user'];

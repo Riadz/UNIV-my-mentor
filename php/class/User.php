@@ -18,10 +18,11 @@ class User
 	// functions
 	function loginUser($data, $type)
 	{
+		$types = ['student', 'teacher'];
 		if (
 			!isset($type) ||
 			empty($type) ||
-			!in_array($type, ['student', 'teacher'])
+			!in_array($type, $types)
 		)
 			return [
 				'result' => false,
@@ -71,6 +72,22 @@ class User
 
 		if (!$result)
 			static::errorSQL($prepared->errorInfo()[2]);
+
+		//
+		if ($prepared->rowCount() === 0) {
+			unset($types[(array_search($type, $types))]);
+			$alt = array_pop($types);
+			$tra = [
+				'student' => 'Étudiant',
+				'teacher' => 'Enseignant',
+			];
+			return [
+				'result'     => false,
+				'reason'     => 'alt',
+				'alt'        => $alt,
+				'alt_reason' => "Vous êtes un {$tra[$alt]}",
+			];
+		}
 
 		//
 		$fetched_type_data = $prepared->fetch();
