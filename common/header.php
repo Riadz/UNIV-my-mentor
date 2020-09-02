@@ -10,7 +10,11 @@ if (isset($header_info['auth'])) {
 		exit;
 	}
 
-	if ($header_info['auth'] !== $_SESSION['user']['type']) {
+
+	if (
+		$header_info['auth'] !== 'both' &&
+		$header_info['auth'] !== $_SESSION['user']['type']
+	) {
 		header('location: error/403');
 		exit;
 	}
