@@ -155,6 +155,59 @@ class User
 		return ['result' => true];
 	}
 
+	function getPost($post_id)
+	{
+		$result = static::$db->query(
+			"SELECT
+			 `post_id`, `post_year`, `post_title`, `status`,
+			 `fac`.`fac_id`, `fac`.`fac_name`, `dep`.`dep_name`,
+			 `post`.`teacher_id`, `user`.`user_id`,
+			 `user`.`first_name`, `user`.`last_name`,
+
+			 (SELECT count(`mentorship_id`) FROM `mentorship`
+			  WHERE `mentorship`.`post_id` = `post`.`post_id`) AS `mentorship_count`
+
+			 FROM `post`
+			 JOIN `dep` ON `post`.`dep_id` = `dep`.`dep_id`
+			 JOIN `fac` ON `dep`.`fac_id` = `fac`.`fac_id`
+			 JOIN `teacher` ON `post`.`teacher_id` = `teacher`.`teacher_id`
+			 JOIN `user` ON `teacher`.`user_id` = `user`.`user_id`
+
+			 WHERE `post_id` = $post_id"
+		);
+		if (!$result)
+			static::errorSQL('Error SQL');
+
+		//
+		$post = $result->fetch();
+		if (count($post) === 0)
+			return [
+				'result' => false,
+				'reason' => '404',
+			];
+		else {
+			$result = static::$db->query(
+				"SELECT `theme_id`, `theme_title`, `theme_description`,
+					(SELECT COUNT(`mentorship_id`) FROM `mentorship`
+						WHERE `mentorship`.`theme_id` = `theme`.`theme_id`)
+					as `mentorship_count`
+				 FROM `theme`
+			 	 WHERE `post_id` = $post_id"
+			);
+			if (!$result)
+				static::errorSQL('Error SQL');
+
+			//
+			$post['themes'] = $result->fetchAll();
+		}
+
+		//
+		return [
+			'result' => true,
+			'post' => $post,
+		];
+	}
+
 	// helper functions
 	private static function validateLoginData($data)
 	{

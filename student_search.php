@@ -61,10 +61,10 @@ $posts =
 									<span class="posts-card-info-text"><?= $post['mentorship_count'] ?></span>
 								</div>
 							</div>
-							<button class="btn btn-search-con">
+							<a href="teacher_post?post_id=<?= $post['post_id'] ?>" class="btn btn-search-con">
 								<i class="fas fa-search fa-lg mr-2"></i>
 								<span>Consulter</span>
-							</button>
+							</a>
 						</div>
 					</div>
 				<?php endforeach ?>

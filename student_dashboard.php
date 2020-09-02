@@ -52,7 +52,7 @@ $deps = $Teacher->getDepArray();
 				</h1>
 				<div class="search-box-form-text w-100">
 					<div class="input-group">
-						<input name="search" type="text" class="form-control" required>
+						<input name="search" type="text" class="form-control">
 
 						<div class="input-group-append">
 							<select name="type" class="custom-select">
