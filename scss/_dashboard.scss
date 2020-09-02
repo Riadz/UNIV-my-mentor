@@ -331,15 +331,39 @@
           }
         }
       }
+
+      .owl-stage-outer {
+        overflow: hidden;
+      }
+      .owl-stage {
+        display: flex;
+        flex-direction: row;
+      }
     }
   }
 
-  .owl-stage-outer {
-    overflow: hidden;
-  }
-  .owl-stage {
-    display: flex;
-    flex-direction: row;
+  &-results {
+    .btn-search-con {
+      height: 74px;
+      margin-top: 1rem;
+      border-radius: 8px;
+
+      color: var(--btn-1-color);
+      background-color: var(--btn-1-bg);
+      &:hover {
+        background-color: var(--btn-1-bg-hover);
+      }
+
+      i {
+        font-size: 2rem;
+      }
+      span {
+        font-size: 2rem;
+        font-family: 'Ubuntu Mono';
+        font-style: italic;
+        font-weight: 500;
+      }
+    }
   }
 }
 

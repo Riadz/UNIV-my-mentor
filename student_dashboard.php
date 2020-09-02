@@ -1,5 +1,3 @@
-<?php ?>
-
 <?php
 $header_info = [
 	'title' => 'Recherche | Etudiant',
@@ -48,7 +46,7 @@ $deps = $Teacher->getDepArray();
 					</div>
 				</div>
 			</div>
-			<form class="search-box-form" action="/">
+			<form class="search-box-form" action="student_search.php" method="GET">
 				<h1 class="search-box-form-header w-100">
 					Recherche
 				</h1>

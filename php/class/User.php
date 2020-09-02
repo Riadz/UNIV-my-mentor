@@ -276,4 +276,16 @@ class User
 	{
 		die("SQL fatal error: $error");
 	}
+
+	static $years_string = [
+		1 => '1er Licence',
+		2 => '2eme Licence',
+		3 => '3eme Licence',
+		4 => '1er Master',
+		5 => '2eme Master',
+	];
+	public function yearToString($year)
+	{
+		return static::$years_string[$year];
+	}
 }
