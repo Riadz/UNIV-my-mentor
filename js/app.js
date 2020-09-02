@@ -1,3 +1,4 @@
+/* ====== Index ====== */
 // carousel
 $('.owl-carousel').owlCarousel({
   items: 1,
@@ -20,6 +21,9 @@ $('.auth-toggle-btn').on('click', function () {
 
   $('.auth-error').hide();
 });
+
+/* ====== Student ====== */
+
 
 /* ====== Teacher ====== */
 // adding themes in add post
