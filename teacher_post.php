@@ -46,11 +46,11 @@ $post = $result['post'];
 					<div class="row">
 						<div class="col-12">
 							<div class="posts-card-info h-100 row">
-								<div class="col-sm-6 d-flex flex-column">
+								<div class="col-sm-6 d-flex flex-column order-sm-0 order-1">
 									<h3><i class="fas fa-user-tie fa-2x fa-fw"></i> Enseignant:</h3>
 									<span class="posts-card-info-text"><?= $post['first_name'] ?> <?= $post['last_name'] ?></span>
 								</div>
-								<div class="col-sm-6 d-flex flex-column">
+								<div class="col-sm-6 d-flex flex-column order-sm-1 order-0">
 									<div style="flex-grow: 1;"></div>
 									<button data-target="#mentorship-modal" data-toggle="modal" class="btn btn-primary py-4 w-100">
 										<i class="fas fa-paper-plane fa-lg fa-2x mr-2 text-white"></i>
@@ -85,6 +85,11 @@ $post = $result['post'];
 							</div>
 						</div>
 					</div>
+					<!-- description -->
+					<h2>Description:</h2>
+					<p class="h5 pl-3 mb-4 mt-2">
+						<?= $post['post_description'] ?>
+					</p>
 					<!-- themes -->
 					<h2>Themes:</h2>
 					<div class="post-theme-container row mt-2">
@@ -134,7 +139,7 @@ $post = $result['post'];
 
 				<div>
 					<div class="input-container">
-						<select name="theme" class="input" required>
+						<select name="theme" class="input shadow" required>
 							<?php foreach ($post['themes'] as $theme) : ?>
 								<option value="<?= $theme['theme_id'] ?>">
 									<?= $theme['theme_title'] ?>

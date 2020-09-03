@@ -159,7 +159,7 @@ class User
 	{
 		$result = static::$db->query(
 			"SELECT
-			 `post_id`, `post_year`, `post_title`, `status`,
+			 `post_id`, `post_year`, `post_title`, `post_description`, `status`,
 			 `fac`.`fac_id`, `fac`.`fac_name`, `dep`.`dep_name`,
 			 `post`.`teacher_id`, `user`.`user_id`,
 			 `user`.`first_name`, `user`.`last_name`,
