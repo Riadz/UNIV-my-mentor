@@ -3,7 +3,6 @@ $header_info = [
 	'title' => 'Créer Une Annonce | Enseignants',
 
 	'auth'       => 'teacher',
-	'navigation' => 'teacher',
 ];
 require('common/header.php')
 ?>

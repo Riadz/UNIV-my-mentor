@@ -3,7 +3,6 @@ $header_info = [
 	'title' => 'Recherche | Etudiant',
 
 	'auth'       => 'student',
-	'navigation' => 'student',
 ];
 require('common/header.php')
 ?>
@@ -23,7 +22,7 @@ $deps = $Teacher->getDepArray();
 		<div class="search-box">
 			<div class="search-box-bg">
 				<!-- carousel -->
-				<div class="carousel slide carousel-fade" data-ride="carousel">
+				<div class="carousel slide carousel-fade" data-interval="2000" data-ride="carousel">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
 							<img src="img/cards/students-1.jpg" class="d-block w-100" alt="">

@@ -3,7 +3,6 @@ $header_info = [
 	'title' => 'Annonce',
 
 	'auth'       => 'both',
-	'navigation' => 'teacher',
 ];
 require('common/header.php')
 ?>

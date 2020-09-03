@@ -3,7 +3,6 @@ $header_info = [
 	'title' => 'Résultat | Etudiant',
 
 	'auth'       => 'student',
-	'navigation' => 'student',
 ];
 require('common/header.php')
 ?>
