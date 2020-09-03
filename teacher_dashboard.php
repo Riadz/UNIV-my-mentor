@@ -28,15 +28,17 @@ $posts =
 							<div class="posts-card-header">
 								<div class="posts-card-status">
 									<h3>Ètat: </h3>
-									<span class="status-<?= $post['status'] ?>"><?= $post['status'] ?></span>
+									<span class="status-<?= $post['status'] ?> d-flex py-2">
+										<?= $post['status'] ?>
+										<button href="#" title="Modifier" class="posts-card-actions-btn btn btn-primary ml-2 text-white">
+											<i class="fas fa-pencil-alt"></i>
+										</button>
+									</span>
 								</div>
 
 								<div class="posts-card-actions">
-									<a href="#" title="Voir" class="posts-card-actions-btn">
+									<a href="teacher_post?post_id=<?= $post['post_id'] ?>" title="Voir" class="posts-card-actions-btn">
 										<i class="fas fa-eye"></i>
-									</a>
-									<a href="#" title="Modifier" class="posts-card-actions-btn">
-										<i class="fas fa-pencil-alt"></i>
 									</a>
 									<button data-post-id="<?= $post['post_id'] ?>" data-mentorship-count="<?= $post['mentorship_count'] ?>" title="supprimer" class="posts-card-actions-btn" data-toggle="modal" data-target="#delet-post-modal">
 										<i class="fas fa-times"></i>
