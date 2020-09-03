@@ -178,14 +178,13 @@ class User
 		if (!$result)
 			static::errorSQL('Error SQL');
 
-		//
-		$post = $result->fetch();
-		if (count($post) === 0)
+		if ($result->rowCount() == 0)
 			return [
 				'result' => false,
 				'reason' => '404',
 			];
 		else {
+			$post = $result->fetch();
 			$result = static::$db->query(
 				"SELECT `theme_id`, `theme_title`, `theme_description`,
 					(SELECT COUNT(`mentorship_id`) FROM `mentorship`
