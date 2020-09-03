@@ -16,6 +16,6 @@ if ($result['result']) {
 	header('location: ../../teacher_dashboard');
 	exit;
 } else {
-	echo 'unexpected error';
+	echo "Error: {$result['reason']}";
 	exit;
 }

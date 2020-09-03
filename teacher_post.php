@@ -1,6 +1,6 @@
 <?php
 $header_info = [
-	'title' => 'Mes Annonces | Enseignants',
+	'title' => 'Annonce',
 
 	'auth'       => 'both',
 	'navigation' => 'teacher',
@@ -20,7 +20,7 @@ $User = new User();
 $result = $User->getPost($_GET['post_id']);
 
 if (!$result['result']) {
-	if ($result['result'] === '404') {
+	if ($result['reason'] === '404') {
 		header('location: error/404');
 		exit;
 	}
@@ -30,6 +30,30 @@ $post = $result['post'];
 ?>
 <main class="post">
 	<div class="container">
+		<?php if (isset($_GET['result'])) : ?>
+			<?php if ($_GET['result']) : ?>
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<h4 class="alert-heading">Demande Envoyée!</h4>
+					<p>Votre demande a été envoyée a l'Enseignant</p>
+					<hr>
+					<p class="mb-0">l'Enseignant va vous repondre très prochainement, veliez patienté</p>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			<?php else : ?>
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<h4 class="alert-heading">Demande non Envoyée!</h4>
+					<p>Votre demande n'a pas été envoyée a l'Enseignant</p>
+					<hr>
+					<p class="mb-0"><?= $_GET['reason'] ?></p>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			<?php endif ?>
+		<?php endif ?>
+
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="posts-card">
@@ -92,7 +116,7 @@ $post = $result['post'];
 					</p>
 					<!-- themes -->
 					<h2>Themes:</h2>
-					<div class="post-theme-container row mt-2">
+					<div class="post-theme-container row">
 						<?php foreach ($post['themes'] as $theme) : ?>
 							<div class="col-lg-6">
 								<div class="post-theme theme-<?= $theme['theme_id'] ?>">
@@ -122,8 +146,8 @@ $post = $result['post'];
 </main>
 <!-- mentorship modal -->
 <div class="modal fade" id="mentorship-modal">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<form class="modal-content">
+	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+		<form class="modal-content" action="php/action/student_request.php" method="POST">
 			<div class="modal-header">
 				<h5 class="modal-title">Demand Encadrement</h5>
 				<button type="button" class="close" data-dismiss="modal">
@@ -138,8 +162,9 @@ $post = $result['post'];
 				</p>
 
 				<div>
-					<div class="input-container">
-						<select name="theme" class="input shadow" required>
+					<input value="<?= $post['post_id'] ?>" type="hidden" name="post_id">
+					<div class="input-container shadow">
+						<select name="theme_id" class="input" required>
 							<?php foreach ($post['themes'] as $theme) : ?>
 								<option value="<?= $theme['theme_id'] ?>">
 									<?= $theme['theme_title'] ?>
@@ -147,7 +172,14 @@ $post = $result['post'];
 							<?php endforeach ?>
 						</select>
 						<label class="input-label">
-							Voilier choisir un theme:
+							Voilier choisir un theme:<i class="mandatory-star">*</i>
+						</label>
+						<div class="input-underline"></div>
+					</div>
+					<div class="input-container shadow">
+						<textarea name="message" type="text" class="input" placeholder=" "></textarea>
+						<label class="input-label">
+							Message (Intitulé du projet, resumé, etc.)
 						</label>
 						<div class="input-underline"></div>
 					</div>
