@@ -19,6 +19,6 @@ if ($result['result']) {
 	header('location: ../../error/403');
 	exit;
 } else {
-	echo 'unexpected error';
+	echo "Error: {$result['reason']}";
 	exit;
 }

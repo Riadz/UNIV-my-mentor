@@ -24,7 +24,7 @@ $requests =
 			<div class="request-container d-flex flex-column">
 				<?php foreach ($requests as $request) : ?>
 					<div class="request-card d-flex justify-content-between">
-						<div class="d-flex flex-grow-1">
+						<div class="d-flex flex-grow-1 pr-3">
 							<div class="request-info">
 								<span>id: <strong><?= $request['mentorship_request_id'] ?></strong></span>
 							</div>
@@ -52,19 +52,18 @@ $requests =
 						</div>
 
 						<div class="request-actions">
-							<button data-request-id="<?= $request['mentorship_request_id'] ?>" data-post="<?= $request['post_title'] ?>" data-theme="<?= $request['theme_title'] ?>" data-student-name="<?= $request['last_name'] ?> <?= $request['first_name'] ?>" data-student-message="<?= htmlspecialchars($request['message']) ?>" data-toggle="modal" data-target="#view-modal" class="request-actions-btn view">
+							<button data-request-id="<?= $request['mentorship_request_id'] ?>" data-post="<?= $request['post_title'] ?>" data-theme="<?= $request['theme_title'] ?>" data-student-name="<?= $request['last_name'] ?> <?= $request['first_name'] ?>" data-student-message="<?= htmlspecialchars($request['message']) ?>" data-toggle="modal" data-target="#view-modal" class="request-actions-btn btn view">
 								<i class="fas fa-search-plus fa-fw"></i>
 							</button>
-							<button data-request-id="<?= $request['mentorship_request_id'] ?>" data-post="<?= $request['post_title'] ?>" data-theme="<?= $request['theme_title'] ?>" data-student-name="<?= $request['last_name'] ?> <?= $request['first_name'] ?>" data-toggle="modal" data-target="#accept-modal" class="request-actions-btn accept">
+							<button data-request-id="<?= $request['mentorship_request_id'] ?>" data-post="<?= $request['post_title'] ?>" data-theme="<?= $request['theme_title'] ?>" data-student-name="<?= $request['last_name'] ?> <?= $request['first_name'] ?>" data-toggle="modal" data-target="#accept-modal" class="request-actions-btn btn accept">
 								<i class="fas fa-check fa-fw"></i>
 							</button>
-							<button data-request-id="<?= $request['mentorship_request_id'] ?>" data-post="<?= $request['post_title'] ?>" data-theme="<?= $request['theme_title'] ?>" data-student-name="<?= $request['last_name'] ?> <?= $request['first_name'] ?>" data-toggle="modal" data-target="#reject-modal" class="request-actions-btn reject">
+							<button data-request-id="<?= $request['mentorship_request_id'] ?>" data-post="<?= $request['post_title'] ?>" data-theme="<?= $request['theme_title'] ?>" data-student-name="<?= $request['last_name'] ?> <?= $request['first_name'] ?>" data-toggle="modal" data-target="#reject-modal" class="request-actions-btn btn reject">
 								<i class="fas fa-times fa-fw"></i>
 							</button>
 						</div>
 					</div>
 				<?php endforeach ?>
-
 			</div>
 		</div>
 	</section>
@@ -105,7 +104,7 @@ $requests =
 				<form action="/php/action/teacher_request_responde.php" method="POST">
 					<input class="view-modal-id-value" name="mentorship_request_id" type="hidden" value="">
 					<input value="rejected" name="response" type="hidden">
-					<button type="submit" class="btn btn-danger">Supprimer</button>
+					<button type="submit" class="btn btn-danger">Rejeter</button>
 				</form>
 			</div>
 		</div>

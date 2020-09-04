@@ -89,6 +89,68 @@ class Teacher extends User
 		//
 		return ['result' => true];
 	}
+	function requestResponse($data, $teacher_id)
+	{
+		$validation = static::validateRequestResponseData($data);
+		if (!$validation['valid'])
+			return [
+				'result' => false,
+				'reason' => $validation['reason'],
+			];
+
+		//
+		if (!static::requestBelongsTo($data['mentorship_request_id'], $teacher_id))
+			return [
+				'result' => false,
+				'reason' => 'unauthorized',
+			];
+
+		if ($data['response'] == 'accepted') {
+			// getting request data
+			$prepared = static::$db->prepare(
+				"SELECT `student_id`, `post_id`, `theme_id` FROM `mentorship_request`
+				 WHERE `mentorship_request_id` = :request_id
+				 LIMIT 1"
+			);
+			$result = $prepared->execute([
+				'request_id' => $data['mentorship_request_id']
+			]);
+			if (!$result)
+				static::errorSQL($result->errorInfo()[2]);
+			$requestData = $prepared->fetch();
+
+			// creating mentorship
+			$prepared = static::$db->prepare(
+				"INSERT INTO `mentorship`
+				 (`post_id`, `theme_id`, `student_id`)
+				 VALUES
+				 (:post_id, :theme_id, :student_id)"
+			);
+			$result = $prepared->execute($requestData);
+			if (!$result)
+				static::errorSQL($prepared->errorInfo()[2]);
+
+			// updating request status
+			$result = static::$db->query(
+				"UPDATE `mentorship_request` SET `status`= 'accepted'
+				 WHERE `mentorship_request_id` = {$data['mentorship_request_id']}"
+			);
+			if (!$result)
+				static::errorSQL($result->errorInfo()[2]);
+		} else {
+
+			// updating request status
+			$result = static::$db->query(
+				"UPDATE `mentorship_request` SET `status`= 'rejected'
+				 WHERE `mentorship_request_id` = {$data['mentorship_request_id']}"
+			);
+			if (!$result)
+				static::errorSQL($result->errorInfo()[2]);
+		}
+
+		//
+		return ['result' => true];
+	}
 
 	function getTeacherDashboardPosts($teacher_id)
 	{
@@ -201,6 +263,28 @@ class Teacher extends User
 		//
 		return ['valid' => true];
 	}
+	private static function validateRequestResponseData($data)
+	{
+		$required_input = [
+			'mentorship_request_id' => 'Id de la demande',
+			'response'              => 'Reponse de la demande',
+		];
+		foreach ($required_input as $input => $alt)
+			if (!isset($data[$input]) || empty($data[$input]))
+				return [
+					'valid' => false,
+					'reason' => "Entrée manquante '$alt'",
+				];
+
+		if (!in_array($data['response'], ['accepted', 'rejected']))
+			return [
+				'valid' => false,
+				'reason' => "Reponse '{$data['response']}' erronée!",
+			];
+
+		//
+		return ['valid' => true];
+	}
 	private static function postBelongsTo($post_id, $teacher_id)
 	{
 		$prepared = static::$db->prepare(
@@ -215,6 +299,26 @@ class Teacher extends User
 		]);
 		if (!$result)
 			static::errorSQL($result->errorInfo()[2]);
+
+		//
+		return (bool) $prepared->rowCount();
+	}
+	private static function requestBelongsTo($request_id, $teacher_id)
+	{
+		$prepared = static::$db->prepare(
+			"SELECT `mentorship_request_id` FROM `mentorship_request`
+			 JOIN `post` on `post`.`post_id` = `mentorship_request`.`post_id`
+			 WHERE
+			 `mentorship_request_id` = :request_id AND
+			 `teacher_id` = :teacher_id
+			 LIMIT 1"
+		);
+		$result = $prepared->execute([
+			'request_id' => $request_id,
+			'teacher_id' => $teacher_id,
+		]);
+		if (!$result)
+			static::errorSQL($prepared->errorInfo()[2]);
 
 		//
 		return (bool) $prepared->rowCount();
