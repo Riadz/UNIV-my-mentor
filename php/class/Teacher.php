@@ -128,6 +128,34 @@ class Teacher extends User
 		return $posts;
 	}
 
+	function getTeacherDashboardRequests($teacher_id)
+	{
+		$result = static::$db->query(
+			"SELECT
+			 `mentorship_request_id`, `mentorship_request`.`student_id`, `mentorship_request`.`post_id`, `mentorship_request`.`status`,
+			 `date`,  `message`, `user`.`last_name`, `user`.`first_name`,
+			 `post`.`post_title`, `fac`.`fac_id`, `dep`.`dep_name`, `theme`.`theme_title`
+
+			 FROM `mentorship_request`
+
+			 JOIN `post` ON `post`.`post_id` = `mentorship_request`.`post_id`
+			 JOIN `student` ON `student`.`student_id` = `mentorship_request`.`student_id`
+			 JOIN `user` ON `user`.`user_id` = `student`.`user_id`
+			 JOIN `theme` ON `theme`.`theme_id` = `mentorship_request`.`theme_id`
+			 JOIN `dep` ON `dep`.`dep_id` = `post`.`dep_id`
+			 JOIN `fac` ON `fac`.`fac_id` = `dep`.`fac_id`
+
+			 WHERE
+			 `mentorship_request`.`status` = 'pending' AND
+			 `teacher_id` = $teacher_id"
+		);
+		if (!$result)
+			static::errorSQL($result->errorInfo()[2]);
+
+		//
+		return $result->fetchAll();;
+	}
+
 	function getFacArray()
 	{
 		$result = static::$db->query(
