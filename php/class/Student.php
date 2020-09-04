@@ -53,12 +53,13 @@ class Student extends User
 			'post_id'    => $data['post_id'],
 			'theme_id'   => $data['theme_id'],
 			'message'    => $data['message'],
+			'date'       => date('Y-m-d'),
 		];
 		$prepared = static::$db->prepare(
 			"INSERT INTO `mentorship_request`
-			 (`student_id`, `post_id`, `theme_id`, `message`)
+			 (`student_id`, `post_id`, `theme_id`, `message`, `date`)
 			 VALUES
-			 (:student_id, :post_id, :theme_id, :message)"
+			 (:student_id, :post_id, :theme_id, :message, :date)"
 		);
 		$result = $prepared->execute($fields);
 		if (!$result)
