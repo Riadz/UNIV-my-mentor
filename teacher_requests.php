@@ -38,7 +38,9 @@ $requests =
 							<div class="request-info">
 								<span>Annonce:</span>
 								<strong class="request-post-title">
-									<?= $request['post_title'] ?>
+									<a href="/teacher_post?post_id=<?= $request['post_id'] ?>">
+										<?= $request['post_title'] ?>
+									</a>
 								</strong>
 							</div>
 							<div class="request-info">

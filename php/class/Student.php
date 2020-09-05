@@ -68,6 +68,31 @@ class Student extends User
 		//
 		return ['result' => true];
 	}
+	function getStudentDashboardRequests($student_id)
+	{
+		$result = static::$db->query(
+			"SELECT
+			 `mentorship_request_id`, `mentorship_request`.`student_id`, `mentorship_request`.`post_id`, `mentorship_request`.`status`,
+			 `date`,  `message`, `user`.`last_name`, `user`.`first_name`,
+			 `post`.`post_title`, `fac`.`fac_id`, `dep`.`dep_name`, `theme`.`theme_title`
+
+			 FROM `mentorship_request`
+
+			 JOIN `post` ON `post`.`post_id` = `mentorship_request`.`post_id`
+			 JOIN `teacher` ON `teacher`.`teacher_id` = `post`.`teacher_id`
+			 JOIN `user` ON `user`.`user_id` = `teacher`.`user_id`
+			 JOIN `theme` ON `theme`.`theme_id` = `mentorship_request`.`theme_id`
+			 JOIN `dep` ON `dep`.`dep_id` = `post`.`dep_id`
+			 JOIN `fac` ON `fac`.`fac_id` = `dep`.`fac_id`
+
+			 WHERE `student_id` = $student_id"
+		);
+		if (!$result)
+			static::errorSQL($result->errorInfo()[2]);
+
+		//
+		return $result->fetchAll();;
+	}
 
 	// helper functions
 	private static function validateRequestMentorshipData($data, $student_id)
