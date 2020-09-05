@@ -21,6 +21,11 @@ $posts =
 			<h1 class="text-center mb-2 display-3">Résultat</h1>
 		</div>
 		<div class="container dashboard-section-container">
+			<?php if (empty($posts)) : ?>
+				<span class="display-3 d-flex justify-content-center py-5">
+					Aucun Résultat Trouvée!
+				</span>
+			<?php endif ?>
 			<div class="search-results posts row">
 				<?php foreach ($posts as $post) : ?>
 					<div class="posts-card-container post-<?= $post['post_id'] ?> col-lg-6">

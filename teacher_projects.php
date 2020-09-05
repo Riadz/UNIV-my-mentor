@@ -21,6 +21,11 @@ $projects =
 	<section class="dashboard-section">
 		<div class="container dashboard-section-container">
 			<h2 class="dashboard-section-header">Mes Projects</h2>
+			<?php if (empty($projects)) : ?>
+				<span class="display-3 d-flex justify-content-center py-5">
+					Vous n'avez aucun projet!
+				</span>
+			<?php endif ?>
 			<div class="posts row">
 				<?php foreach ($projects as $project) : ?>
 					<div class="posts-card-container project-<?= $project['mentorship_id'] ?> col-lg-6">
