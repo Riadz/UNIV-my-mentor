@@ -71,7 +71,7 @@ if (isset($header_info['auth'])) {
 						<ul class="navbar-nav teacher-nav ml-auto">
 							<li><a href="/teacher_dashboard">Mes Annonces</a></li>
 							<li><a href="/teacher_requests">Mes Demandes</a></li>
-							<li><a href="/teacher_create_post">Créer Une Annonce</a></li>
+							<li><a href="/teacher_projects">Mes Projets</a></li>
 							<li><a href="php/action/logout">Se Deconnecter</a></li>
 						</ul>
 					<?php endif ?>
