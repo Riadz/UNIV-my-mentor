@@ -1,6 +1,6 @@
 <?php
 $header_info = [
-	'title' => 'Mes Annonces | Enseignants',
+	'title' => 'Mes Demandes | Enseignants',
 
 	'auth' => 'student',
 ];
