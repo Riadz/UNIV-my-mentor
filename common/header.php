@@ -65,6 +65,7 @@ if (isset($header_info['auth'])) {
 						<ul class="navbar-nav student-nav ml-auto">
 							<li><a href="/student_dashboard">Recherche</a></li>
 							<li><a href="/student_requests">Mes Demandes</a></li>
+							<li><a href="/student_projects">Mes Projets</a></li>
 							<li><a href="php/action/logout">Se Deconnecter</a></li>
 						</ul>
 					<?php elseif ($_SESSION['user']['type'] === 'teacher') : ?>
