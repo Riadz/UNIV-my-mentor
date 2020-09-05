@@ -175,6 +175,27 @@ class Teacher extends User
 		//
 		return ['result' => true];
 	}
+	function deleteMentorship($mentorship_id, $teacher_id)
+	{
+		if (!static::mentorshipBelongsTo($mentorship_id, $teacher_id))
+			return [
+				'result' => false,
+				'reason' => 'unauthorized',
+			];
+
+		//
+		$prepared = static::$db->prepare(
+			"DELETE FROM `mentorship` WHERE
+			 `mentorship_id` = :mentorship_id
+			 LIMIT 1"
+		);
+		$result = $prepared->execute(['mentorship_id' => $mentorship_id]);
+		if (!$result)
+			static::errorSQL($result->errorInfo()[2]);
+
+		//
+		return ['result' => true];
+	}
 
 	function getTeacherDashboardPosts($teacher_id)
 	{
@@ -213,7 +234,29 @@ class Teacher extends User
 		//
 		return $posts;
 	}
+	function getTeacherDashboardProjects($teacher_id)
+	{
+		$result = static::$db->query(
+			"SELECT
+			 `mentorship_id`, `fac`.`fac_id`, `dep`.`dep_name`, `post_year`, `post_title`,
+			 `theme`.`theme_title`, `user`.`last_name`, `user`.`first_name`, `user`.`email`
 
+			 FROM `mentorship`
+			 JOIN `post` ON `post`.`post_id` = `mentorship`.`post_id`
+			 JOIN `theme` ON `theme`.`theme_id` = `mentorship`.`theme_id`
+			 JOIN `student` ON `student`.`student_id` = `mentorship`.`student_id`
+			 JOIN `user` ON `user`.`user_id` = `student`.`user_id`
+			 JOIN `dep` ON `post`.`dep_id` = `dep`.`dep_id`
+			 JOIN `fac` ON `dep`.`fac_id` = `fac`.`fac_id`
+
+			 WHERE `teacher_id` = $teacher_id"
+		);
+		if (!$result)
+			static::errorSQL($result->errorInfo()[2]);
+
+		//
+		return $result->fetchAll();
+	}
 	function getTeacherDashboardRequests($teacher_id)
 	{
 		$result = static::$db->query(
@@ -340,6 +383,28 @@ class Teacher extends User
 		$result = $prepared->execute([
 			'request_id' => $request_id,
 			'teacher_id' => $teacher_id,
+		]);
+		if (!$result)
+			static::errorSQL($prepared->errorInfo()[2]);
+
+		//
+		return (bool) $prepared->rowCount();
+	}
+	private static function mentorshipBelongsTo($mentorship_id, $teacher_id)
+	{
+		$prepared = static::$db->prepare(
+			"SELECT `mentorship_id`
+			 FROM `mentorship`
+			 JOIN `post` ON `post`.`post_id` = `mentorship`.`post_id`
+
+			 WHERE
+			 `mentorship_id` = :mentorship_id AND
+			 `teacher_id` = :teacher_id
+			 LIMIT 1"
+		);
+		$result = $prepared->execute([
+			'mentorship_id' => $mentorship_id,
+			'teacher_id'    => $teacher_id,
 		]);
 		if (!$result)
 			static::errorSQL($prepared->errorInfo()[2]);
