@@ -151,6 +151,30 @@ class Teacher extends User
 		//
 		return ['result' => true];
 	}
+	function updatePostStatus($post_id, $status, $teacher_id)
+	{
+		if (!static::postBelongsTo($post_id, $teacher_id))
+			return [
+				'result' => false,
+				'reason' => 'unauthorized',
+			];
+
+		//
+		$prepared = static::$db->prepare(
+			"UPDATE `post` SET `status`=:status
+			 WHERE `post_id`= :post_id
+			 LIMIT 1"
+		);
+		$result = $prepared->execute([
+			'status'  => $status,
+			'post_id' => $post_id
+		]);
+		if (!$result)
+			static::errorSQL($result->errorInfo()[2]);
+
+		//
+		return ['result' => true];
+	}
 
 	function getTeacherDashboardPosts($teacher_id)
 	{

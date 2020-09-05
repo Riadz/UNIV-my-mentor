@@ -30,7 +30,7 @@ $posts =
 									<h3>Ètat: </h3>
 									<span class="status-<?= $post['status'] ?> d-flex py-2">
 										<?= $post['status'] ?>
-										<button href="#" title="Modifier" class="posts-card-actions-btn btn btn-primary ml-2 text-white">
+										<button data-post-id="<?= $post['post_id'] ?>" data-status="<?= $post['status'] ?>" data-toggle="modal" data-target="#edit-status-modal" title="Modifier" class="posts-card-actions-btn edit">
 											<i class="fas fa-pencil-alt"></i>
 										</button>
 									</span>
@@ -125,13 +125,62 @@ $posts =
 		</div>
 	</div>
 </div>
+<!-- edit modal -->
+<div class="modal fade" id="edit-status-modal">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<form action="php/action/teacher_update_status.php" method="POST" class="modal-content">
+			<input id="edit-status-post-id" name="post_id" type="hidden">
+
+			<div class="modal-header">
+				<h5 class="modal-title">Modifier l'etat de l'annonces</h5>
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<p class="h4">Voilier choisir une etat:</p>
+				<div class="radio-group">
+					<input name="status" type="radio" id="input-ouvert" value="ouvert" checked>
+					<div class="posts-card-status">
+						<span class="status-ouvert d-flex py-2">
+							Ouvert
+						</span>
+					</div>
+				</div>
+				<div class="radio-group">
+					<input name="status" type="radio" id="input-fermée" value="fermée">
+					<div class="posts-card-status">
+						<span class="status-fermée d-flex py-2">
+							Fermée
+						</span>
+					</div>
+				</div>
+				<div class="radio-group">
+					<input name="status" type="radio" id="input-suspendu" value="suspendu">
+					<div class="posts-card-status">
+						<span class="status-suspendu d-flex py-2">
+							Suspendu
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+				<button type="submit" class="btn btn-primary">Modifier</button>
+			</div>
+		</form>
+	</div>
+</div>
 
 <?php
 require('common/footer.php')
 ?>
 
-<!-- delete modal script -->
+<!-- modal scripts -->
 <script>
+	// delete modal
 	$('#delet-post-modal').on('show.bs.modal', function(event) {
 		let button = $(event.relatedTarget);
 		let postId = button.data('post-id');
@@ -141,5 +190,15 @@ require('common/footer.php')
 		modal.find('#modal-post-id-text').text(postId);
 		modal.find('#modal-post-id-input').val(postId);
 		modal.find('#modal-mentorship-count').text(mentorshipCount);
+	})
+	// edit status modal
+	$('#edit-status-modal').on('show.bs.modal', function(event) {
+		let button = $(event.relatedTarget);
+		let postId = button.data('post-id');
+		let status = button.data('status');
+
+		let modal = $(this);
+		modal.find('#edit-status-post-id').val(postId);
+		modal.find(`#input-${status}`).prop("checked", true);
 	})
 </script>
