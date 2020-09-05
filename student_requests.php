@@ -21,6 +21,11 @@ $requests =
 	<section class="dashboard-section">
 		<div class="container dashboard-section-container">
 			<h2 class="dashboard-section-header">Mes Demandes</h2>
+			<?php if (empty($requests)) : ?>
+				<span class="display-3 d-flex justify-content-center py-5">
+					Vous n'avez aucun Demande!
+				</span>
+			<?php endif ?>
 			<div class="request-container d-flex flex-column">
 				<?php foreach ($requests as $request) : ?>
 					<div class="request-card d-flex justify-content-between">
