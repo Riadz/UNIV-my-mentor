@@ -1,6 +1,6 @@
 <?php
 $header_info = [
-	'title' => 'Recherche | Etudiant',
+	'title' => 'Recherche | Etudiants',
 
 	'auth'       => 'student',
 ];
