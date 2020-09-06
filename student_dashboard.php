@@ -63,44 +63,53 @@ $deps = $Teacher->getDepArray();
 					</div>
 				</div>
 				<div class="search-box-form-selects w-100">
-					<div class="input-container">
-						<select name="fac" class="input">
-							<?php foreach ($facs as $fac) : ?>
-								<option value="<?= $fac['fac_id'] ?>">
-									<?= $fac['fac_name'] ?>
-								</option>
-							<?php endforeach ?>
-						</select>
-						<label class="input-label">
-							Faculté
-						</label>
-						<div class="input-underline"></div>
+					<div class="d-flex flex-row align-items-center">
+						<input class="enable-checkbox" data-target="fac" type="checkbox">
+						<div class="input-container">
+							<select name="fac" class="input" disabled>
+								<?php foreach ($facs as $fac) : ?>
+									<option value="<?= $fac['fac_id'] ?>">
+										<?= $fac['fac_name'] ?>
+									</option>
+								<?php endforeach ?>
+							</select>
+							<label class="input-label">
+								Faculté
+							</label>
+							<div class="input-underline"></div>
+						</div>
 					</div>
-					<div class="input-container">
-						<select name="dep" class="input">
-							<?php foreach ($deps as $dep) : ?>
-								<option value="<?= $dep['dep_id'] ?>" fac-id="<?= $dep['fac_id'] ?>">
-									<?= $dep['dep_name'] ?>
-								</option>
-							<?php endforeach ?>
-						</select>
-						<label class="input-label">
-							Departement
-						</label>
-						<div class="input-underline"></div>
+					<div class="d-flex flex-row align-items-center">
+						<input class="enable-checkbox" data-target="dep" type="checkbox">
+						<div class="input-container">
+							<select name="dep" class="input" disabled>
+								<?php foreach ($deps as $dep) : ?>
+									<option value="<?= $dep['dep_id'] ?>" fac-id="<?= $dep['fac_id'] ?>">
+										<?= $dep['dep_name'] ?>
+									</option>
+								<?php endforeach ?>
+							</select>
+							<label class="input-label">
+								Departement
+							</label>
+							<div class="input-underline"></div>
+						</div>
 					</div>
-					<div class="input-container">
-						<select name="year" class="input">
-							<option value="1">1er Licence</option>
-							<option value="2">2eme Licence</option>
-							<option value="3">3eme Licence</option>
-							<option value="4">1er Master</option>
-							<option value="5">2eme Master</option>
-						</select>
-						<label class="input-label">
-							Année
-						</label>
-						<div class="input-underline"></div>
+					<div class="d-flex flex-row align-items-center">
+						<input class="enable-checkbox" data-target="year" type="checkbox">
+						<div class="input-container">
+							<select name="year" class="input" disabled>
+								<option value="1">1er Licence</option>
+								<option value="2">2eme Licence</option>
+								<option value="3">3eme Licence</option>
+								<option value="4">1er Master</option>
+								<option value="5">2eme Master</option>
+							</select>
+							<label class="input-label">
+								Année
+							</label>
+							<div class="input-underline"></div>
+						</div>
 					</div>
 				</div>
 				<button class="search-box-form-btn btn btn-1 mx-auto" type="submit">

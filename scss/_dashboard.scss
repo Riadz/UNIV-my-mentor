@@ -355,6 +355,13 @@
         flex-direction: row;
       }
     }
+
+    .enable-checkbox {
+      width: 25px;
+      height: 25px;
+      margin-right: 0.5rem;
+      margin-top: 2.5rem;
+    }
   }
 
   &-results {
