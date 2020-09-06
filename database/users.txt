@@ -1,0 +1,11 @@
+** User Accounts:
+Password is the same as the email
+
+teachers:
+Lorem@gmail.com
+Jon@gmail.com
+Jane@gmail.com
+
+students:
+Johnnie@gmail.com
+Roe@gmail.com
