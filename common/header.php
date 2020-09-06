@@ -44,7 +44,14 @@ if (isset($header_info['auth'])) {
 		<div class="container">
 			<div class="logo-nav navbar navbar-expand-lg navbar-light p-0">
 				<a class="navbar-brand d-flex align-items-end" href="/">
-					<img src="img/logo.svg" alt="Mon Encadreur logo" />
+					<?php if ($_SESSION['user']['type'] == 'teacher') : ?>
+						<i class="fas fa-user-tie fa-3x fa-fw"></i>
+					<?php elseif ($_SESSION['user']['type'] == 'student') : ?>
+						<i class="fas fa-user-graduate fa-3x fa-fw"></i>
+					<?php else : ?>
+						<img src="img/logo.svg" alt="Mon Encadreur logo" />
+					<?php endif ?>
+
 					<span>Mon Encadreur</span>
 				</a>
 
