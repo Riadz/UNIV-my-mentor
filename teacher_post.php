@@ -26,6 +26,30 @@ if (!$result['result']) {
 }
 
 $post = $result['post'];
+
+// disable button ?
+$disable_btn = [
+	'bool' => false
+];
+if ($_SESSION['user']['type'] == 'teacher') {
+	$disable_btn = [
+		'bool' => true,
+		'reason' => 'vous ne pouvez pas envoyer une demande car vous êtes un enseignant',
+	];
+} elseif ($post['status'] == 'suspendu') {
+	$disable_btn = [
+		'bool' => true,
+		'reason' => 'vous ne pouvez pas envoyer une demande car l\'annonce est suspendu,
+		 attendez qu\'elle soit ouverte a nouveau',
+	];
+} elseif ($post['status'] == 'fermée') {
+	$disable_btn = [
+		'bool' => true,
+		'reason' => 'vous ne pouvez pas envoyer une demande car l\'annonce est fermée',
+	];
+}
+
+
 ?>
 <main class="post">
 	<div class="container">
@@ -75,10 +99,17 @@ $post = $result['post'];
 								</div>
 								<div class="col-sm-6 d-flex flex-column order-sm-1 order-0">
 									<div style="flex-grow: 1;"></div>
-									<button <?= $_SESSION['user']['type'] == 'student' ? '' : 'disabled' ?> data-target="#mentorship-modal" data-toggle="modal" class="btn btn-primary py-4 w-100">
-										<i class="fas fa-paper-plane fa-lg fa-2x mr-2 text-white"></i>
-										<span class="text-white h4">Demand Encadrement</span>
-									</button>
+									<?php if ($disable_btn['bool']) : ?>
+										<div title="<?= $disable_btn['reason'] ?>" class="btn btn-primary disabled pin-tooltip py-4 w-100" style="cursor: not-allowed" data-toggle="tooltip" data-placement="top">
+											<i class="fas fa-paper-plane fa-lg fa-2x mr-2 text-white"></i>
+											<span class="text-white h4">Demand Encadrement</span>
+										</div>
+									<?php else : ?>
+										<button data-target="#mentorship-modal" data-toggle="modal" class="btn btn-primary py-4 w-100">
+											<i class="fas fa-paper-plane fa-lg fa-2x mr-2 text-white"></i>
+											<span class="text-white h4">Demand Encadrement</span>
+										</button>
+									<?php endif ?>
 								</div>
 							</div>
 						</div>

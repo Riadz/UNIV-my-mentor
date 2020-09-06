@@ -30,7 +30,11 @@ class Student extends User
 			 JOIN `teacher` ON `post`.`teacher_id` = `teacher`.`teacher_id`
 			 JOIN `user` ON `teacher`.`user_id` = `user`.`user_id`
 
-			 WHERE 1"
+			 WHERE `status` != 'fermée'
+
+			 # AND `post_title` like {$data['search']}
+			 # ...
+			 "
 		);
 		if (!$result)
 			static::errorSQL('Error SQL');
@@ -93,6 +97,30 @@ class Student extends User
 		//
 		return $result->fetchAll();;
 	}
+	function getStudentDashboardProjects($student_id)
+	{
+		$result = static::$db->query(
+			"SELECT
+			 `mentorship_id`, `fac`.`fac_id`, `dep`.`dep_name`, `post_year`, `post_title`,
+			 `theme`.`theme_title`, `user`.`last_name`, `user`.`first_name`,
+			 `teacher`.`public_email`,`teacher`.`public_number`
+
+			 FROM `mentorship`
+			 JOIN `post` ON `post`.`post_id` = `mentorship`.`post_id`
+			 JOIN `theme` ON `theme`.`theme_id` = `mentorship`.`theme_id`
+			 JOIN `teacher` ON `teacher`.`teacher_id` = `post`.`teacher_id`
+			 JOIN `user` ON `user`.`user_id` = `teacher`.`user_id`
+			 JOIN `dep` ON `post`.`dep_id` = `dep`.`dep_id`
+			 JOIN `fac` ON `dep`.`fac_id` = `fac`.`fac_id`
+
+			 WHERE `student_id` = $student_id"
+		);
+		if (!$result)
+			static::errorSQL(static::$db->errorInfo()[2]);
+
+		//
+		return $result->fetchAll();
+	}
 
 	// helper functions
 	private static function validateRequestMentorshipData($data, $student_id)
@@ -112,14 +140,21 @@ class Student extends User
 		if (!static::themeBelongsTo($data['theme_id'], $data['post_id']))
 			return [
 				'valid' => false,
-				'reason' => "Theme appartient pas a se post",
+				'reason' => 'Theme appartient pas a se post',
 			];
 
 		//
 		if (static::demandExists($student_id, $data['post_id']))
 			return [
 				'valid' => false,
-				'reason' => "Vous avez deja envoyée une domande a cette annonce",
+				'reason' => 'Vous avez deja envoyée une domande a cette annonce',
+			];
+
+		//
+		if (static::demandProhibited($data['post_id']))
+			return [
+				'valid' => false,
+				'reason' => 'Cette annonce est fermée ou suspendu',
 			];
 
 		//
@@ -160,5 +195,22 @@ class Student extends User
 
 		//
 		return (bool) $prepared->rowCount();
+	}
+	private static function demandProhibited($post_id)
+	{
+		$prepared = static::$db->prepare(
+			"SELECT `post_id` FROM `post` WHERE
+			 `post_id` = :post_id AND
+			 `status` = 'ouvert'
+			 LIMIT 1"
+		);
+		$result = $prepared->execute([
+			'post_id'    => $post_id,
+		]);
+		if (!$result)
+			static::errorSQL($prepared->errorInfo()[2]);
+
+		//
+		return !(bool) $prepared->rowCount();
 	}
 }
