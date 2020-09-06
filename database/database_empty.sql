@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 28, 2020 at 10:07 PM
+-- Generation Time: Sep 06, 2020 at 01:31 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -33,26 +33,6 @@ CREATE TABLE `dep` (
   `dep_name` varchar(155) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `dep`
---
-
-INSERT INTO `dep` (`fac_id`, `dep_id`, `dep_name`) VALUES
-(1, 1, 'Informatique'),
-(1, 2, 'Eléctrotechnique'),
-(2, 3, 'Biologie'),
-(2, 4, 'Sciences de la Matière'),
-(3, 5, 'العلوم السياسية'),
-(3, 6, 'الحقوق'),
-(4, 7, 'Architecture'),
-(4, 8, 'Géologie'),
-(5, 9, 'العلوم الإنسانية و الإجتماعية'),
-(5, 10, 'التربية البدنية و الرياضية'),
-(6, 11, 'Sciences financières'),
-(6, 12, 'Sciences de Gestion'),
-(7, 13, 'Médecine'),
-(7, 14, 'Pharmacie');
-
 -- --------------------------------------------------------
 
 --
@@ -64,18 +44,34 @@ CREATE TABLE `fac` (
   `fac_name` varchar(155) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `fac`
+-- Table structure for table `mentorship`
 --
 
-INSERT INTO `fac` (`fac_id`, `fac_name`) VALUES
-(1, 'Sci Ingéniorat'),
-(2, 'Sciences'),
-(3, 'Droit'),
-(4, 'Sci de la Terre'),
-(5, 'Lettres,Sci Humaines'),
-(6, 'Sci Economiques & Gestion'),
-(7, 'Médecine');
+CREATE TABLE `mentorship` (
+  `mentorship_id` int(6) NOT NULL,
+  `post_id` int(6) NOT NULL,
+  `theme_id` int(6) NOT NULL,
+  `student_id` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mentorship_request`
+--
+
+CREATE TABLE `mentorship_request` (
+  `mentorship_request_id` int(6) NOT NULL,
+  `student_id` int(6) NOT NULL,
+  `post_id` int(6) NOT NULL,
+  `theme_id` int(6) NOT NULL,
+  `date` date NOT NULL,
+  `status` enum('pending','accepted','rejected') CHARACTER SET utf8 NOT NULL DEFAULT 'pending',
+  `message` text CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -87,7 +83,8 @@ CREATE TABLE `post` (
   `post_id` int(6) NOT NULL,
   `teacher_id` int(6) NOT NULL,
   `dep_id` int(6) NOT NULL,
-  `status` varchar(155) NOT NULL,
+  `status` enum('ouvert','fermée','suspendu') DEFAULT 'ouvert',
+  `post_year` enum('1','2','3','4','5') NOT NULL,
   `post_title` varchar(155) NOT NULL,
   `post_description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -103,13 +100,6 @@ CREATE TABLE `student` (
   `user_id` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`student_id`, `user_id`) VALUES
-(2, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -122,13 +112,6 @@ CREATE TABLE `teacher` (
   `public_email` varchar(155) DEFAULT NULL,
   `public_number` varchar(155) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `teacher`
---
-
-INSERT INTO `teacher` (`teacher_id`, `user_id`, `public_email`, `public_number`) VALUES
-(1, 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -158,14 +141,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password`) VALUES
-(2, 'test prenom', 'test nom', 'test@test', '$2y$10$Mwud54h9vh8utimX9qoWBelKwv74wRhiqoatjcrmxzaF2EczIp9re'),
-(3, 'test prenom', 'test nom', 'test@test.teacher', '$2y$10$SnwP9Cek7rT6Fv8/eDOH5eaICp5LW8Vf4.mTn4WzCUasYlv6AVXzW');
-
---
 -- Indexes for dumped tables
 --
 
@@ -181,6 +156,24 @@ ALTER TABLE `dep`
 --
 ALTER TABLE `fac`
   ADD PRIMARY KEY (`fac_id`);
+
+--
+-- Indexes for table `mentorship`
+--
+ALTER TABLE `mentorship`
+  ADD PRIMARY KEY (`mentorship_id`),
+  ADD KEY `post_id` (`post_id`),
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `theme_id` (`theme_id`);
+
+--
+-- Indexes for table `mentorship_request`
+--
+ALTER TABLE `mentorship_request`
+  ADD PRIMARY KEY (`mentorship_request_id`),
+  ADD KEY `post_id` (`post_id`),
+  ADD KEY `theme_id` (`theme_id`),
+  ADD KEY `student_id` (`student_id`);
 
 --
 -- Indexes for table `post`
@@ -226,13 +219,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `dep`
 --
 ALTER TABLE `dep`
-  MODIFY `dep_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `dep_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `fac`
 --
 ALTER TABLE `fac`
-  MODIFY `fac_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `fac_id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `mentorship`
+--
+ALTER TABLE `mentorship`
+  MODIFY `mentorship_id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `mentorship_request`
+--
+ALTER TABLE `mentorship_request`
+  MODIFY `mentorship_request_id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `post`
@@ -244,13 +249,13 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `student_id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `teacher_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `teacher_id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `theme`
@@ -262,7 +267,7 @@ ALTER TABLE `theme`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -275,10 +280,27 @@ ALTER TABLE `dep`
   ADD CONSTRAINT `dep_ibfk_1` FOREIGN KEY (`fac_id`) REFERENCES `fac` (`fac_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `mentorship`
+--
+ALTER TABLE `mentorship`
+  ADD CONSTRAINT `mentorship_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `mentorship_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `mentorship_ibfk_3` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`theme_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `mentorship_request`
+--
+ALTER TABLE `mentorship_request`
+  ADD CONSTRAINT `mentorship_request_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `mentorship_request_ibfk_2` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`theme_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `mentorship_request_ibfk_3` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `post`
 --
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `post_ibfk_2` FOREIGN KEY (`dep_id`) REFERENCES `dep` (`dep_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student`
