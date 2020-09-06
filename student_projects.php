@@ -41,7 +41,7 @@ $projects =
 								</div>
 								<div class="col-12 d-flex flex-column">
 									<h3><i class="fas fa-mobile-alt fa-2x fa-fw"></i> Numero:</h3>
-									<span class="posts-card-info-text"><?= empty($project['public_number']) ? 'Non Disponible' : $project['public_email'] ?></span>
+									<span class="posts-card-info-text"><?= empty($project['public_number']) ? 'Non Disponible' : $project['public_number'] ?></span>
 								</div>
 								<div class="col-6 d-flex flex-column">
 									<h3><i class="fas fa-address-card fa-2x fa-fw"></i> Annonce:</h3>
