@@ -118,6 +118,24 @@ else
 							<div class="input-underline"></div>
 						</div>
 					</div>
+					<div class="col-sm-6 col-12">
+						<div class="input-container">
+							<input name="public_email" type="text" class="input" placeholder=" " required />
+							<label class="input-label">
+								Email public
+							</label>
+							<div class="input-underline"></div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-12">
+						<div class="input-container">
+							<input name="public_number" type="text" class="input" placeholder=" " />
+							<label class="input-label">
+								Numero public
+							</label>
+							<div class="input-underline"></div>
+						</div>
+					</div>
 				</div>
 				<button class="btn">
 					<i class="fas fa-user-plus fa-lg"></i>

@@ -143,13 +143,29 @@ class User
 		if (!$result)
 			static::errorSQL($prepared->errorInfo()[2]);
 		//
-		$prepared = static::$db->prepare(
-			"INSERT INTO `$type`
+		if ($type == 'teacher') {
+			$prepared = static::$db->prepare(
+				"INSERT INTO `teacher`
+			 (`user_id`, `public_email`, `public_number`)
+			 VALUES (:user_id, :public_email, :public_number)"
+			);
+			$result = $prepared->execute([
+				'user_id' => static::$db->lastInsertId(),
+				'public_email' => $data['public_email'] ?? 'NULL',
+				'public_number' => $data['public_number'] ?? 'NULL',
+			]);
+			if (!$result)
+				static::errorSQL($prepared->errorInfo()[2]);
+		} else {
+			$prepared = static::$db->prepare(
+				"INSERT INTO `student`
 			 (`user_id`) VALUES (:user_id)"
-		);
-		$result = $prepared->execute(['user_id' => static::$db->lastInsertId()]);
-		if (!$result)
-			static::errorSQL($prepared->errorInfo()[2]);
+			);
+			$result = $prepared->execute(['user_id' => static::$db->lastInsertId()]);
+			if (!$result)
+				static::errorSQL($prepared->errorInfo()[2]);
+		}
+
 
 		//
 		return ['result' => true];
