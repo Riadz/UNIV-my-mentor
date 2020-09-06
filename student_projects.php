@@ -37,11 +37,11 @@ $projects =
 								</div>
 								<div class="col-12 d-flex flex-column">
 									<h3><i class="fas fa-envelope-open-text fa-2x fa-fw"></i> Email:</h3>
-									<span class="posts-card-info-text"><?= $project['public_email'] ?? 'Non Disponible' ?></span>
+									<span class="posts-card-info-text"><?= empty($project['public_email']) ? 'Non Disponible' : $project['public_email'] ?></span>
 								</div>
 								<div class="col-12 d-flex flex-column">
 									<h3><i class="fas fa-mobile-alt fa-2x fa-fw"></i> Numero:</h3>
-									<span class="posts-card-info-text"><?= $project['public_number'] ?? 'Non Disponible' ?></span>
+									<span class="posts-card-info-text"><?= empty($project['public_number']) ? 'Non Disponible' : $project['public_email'] ?></span>
 								</div>
 								<div class="col-6 d-flex flex-column">
 									<h3><i class="fas fa-address-card fa-2x fa-fw"></i> Annonce:</h3>
