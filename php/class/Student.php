@@ -14,6 +14,33 @@ class Student extends User
 	// functions
 	public function search($data)
 	{
+		$search_params = [];
+
+		if (isset($data['search'])) {
+			$type = $data['type'] ?? 'post_title';
+			$search = static::$db->quote("%{$data['search']}%");
+
+			$search_params[] = "$type like $search";
+		}
+
+		// escaping input
+		foreach ($data as &$item)
+			$item = static::$db->quote($item);
+
+		//
+		if (isset($data['fac']))
+			$search_params[] = "`fac`.`fac_id`= {$data['fac']}";
+
+		if (isset($data['dep']))
+			$search_params[] = "`dep`.`dep_id`= {$data['dep']}";
+
+		if (isset($data['year']))
+			$search_params[] = "`post_year`= {$data['year']}";
+
+		$search_str = '';
+		foreach ($search_params as $param)
+			$search_str .= " AND $param ";
+
 		$result = static::$db->query(
 			"SELECT
 			 `post_id`, `post_year`, `post_title`, `status`,
@@ -32,12 +59,11 @@ class Student extends User
 
 			 WHERE `status` != 'fermée'
 
-			 # AND `post_title` like {$data['search']}
-			 # ...
+			 $search_str
 			 "
 		);
 		if (!$result)
-			static::errorSQL('Error SQL');
+			static::errorSQL(static::$db->errorInfo()[2]);
 
 		//
 		return $result->fetchAll();

@@ -55,16 +55,15 @@ $deps = $Teacher->getDepArray();
 
 						<div class="input-group-append">
 							<select name="type" class="custom-select">
-								<option selected>Tout</option>
-								<option value="1">Titre du post</option>
-								<option value="2">Nom d'enseignant</option>
+								<option value="post_title">Titre du post</option>
+								<option value="last_name">Nom d'enseignant</option>
 							</select>
 						</div>
 					</div>
 				</div>
 				<div class="search-box-form-selects w-100">
 					<div class="d-flex flex-row align-items-center">
-						<input class="enable-checkbox" data-target="fac" type="checkbox">
+						<input class="enable-checkbox" data-target="fac" type="checkbox" checked="false">
 						<div class="input-container">
 							<select name="fac" class="input" disabled>
 								<?php foreach ($facs as $fac) : ?>
@@ -80,7 +79,7 @@ $deps = $Teacher->getDepArray();
 						</div>
 					</div>
 					<div class="d-flex flex-row align-items-center">
-						<input class="enable-checkbox" data-target="dep" type="checkbox">
+						<input class="enable-checkbox" data-target="dep" type="checkbox" checked="false">
 						<div class="input-container">
 							<select name="dep" class="input" disabled>
 								<?php foreach ($deps as $dep) : ?>
@@ -96,7 +95,7 @@ $deps = $Teacher->getDepArray();
 						</div>
 					</div>
 					<div class="d-flex flex-row align-items-center">
-						<input class="enable-checkbox" data-target="year" type="checkbox">
+						<input class="enable-checkbox" data-target="year" type="checkbox" checked="false">
 						<div class="input-container">
 							<select name="year" class="input" disabled>
 								<option value="1">1er Licence</option>

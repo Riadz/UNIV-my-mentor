@@ -24,13 +24,13 @@ $('.auth-toggle-btn').on('click', function () {
 
 /* ====== Student ====== */
 // search fields
+$('.enable-checkbox').prop('checked', false);
 $('.enable-checkbox').click(function (e) {
   let button = $(e.target);
   let checked = button.is(':checked');
   let target = button.data('target');
 
   $(`select[name="${target}"]`).prop('disabled', !checked);
-  console.log(checked)
 })
 
 /* ====== Teacher ====== */
