@@ -112,18 +112,7 @@ if (isset($_SESSION['user'])) {
 				<span>Pour Enseignant</span>
 			</h2>
 			<div class="row pt-5">
-				<div class="col-lg-5 feature-text d-flex align-items-center ">
-					<p>
-						Lorem, ipsum dolor sit amet consectetur <strong>adipisicing</strong> elit. Neque et dolorum nemo,
-						illum laudantium reprehenderit <strong>excepturi</strong> quos aliquid cum quidem,
-						repudiandae unde nesciunt <strong>optio eius</strong> porro illo dolores consectetur! Iure.
-						<a href="teacher_auth?signup_tab" class="btn-1 mt-4 mx-auto">
-							<i class="fas fa-user-tie mr-2"></i>
-							Créer un compte
-						</a>
-					</p>
-				</div>
-				<div class="col-lg-7 feature-carousel">
+				<div class="col-lg-7 feature-carousel order-lg-1">
 					<div class="feature-carousel-wrapper">
 						<div class="feature-carousel-container owl-carousel">
 							<!-- card 1 -->
@@ -182,6 +171,17 @@ if (isset($_SESSION['user'])) {
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="col-lg-5 feature-text d-flex align-items-center order-lg-0">
+					<p>
+						Lorem, ipsum dolor sit amet consectetur <strong>adipisicing</strong> elit. Neque et dolorum nemo,
+						illum laudantium reprehenderit <strong>excepturi</strong> quos aliquid cum quidem,
+						repudiandae unde nesciunt <strong>optio eius</strong> porro illo dolores consectetur! Iure.
+						<a href="teacher_auth?signup_tab" class="btn-1 mt-4 mx-auto">
+							<i class="fas fa-user-tie mr-2"></i>
+							Créer un compte
+						</a>
+					</p>
 				</div>
 			</div>
 		</div>

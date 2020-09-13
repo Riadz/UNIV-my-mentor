@@ -50,10 +50,10 @@ $deps = $Teacher->getDepArray();
 					Recherche
 				</h1>
 				<div class="search-box-form-text w-100">
-					<div class="input-group">
-						<input name="search" type="text" class="form-control">
+					<div class="input-group row no-gutters">
+						<input name="search" type="text" class="form-control col-sm-12 col-md-8">
 
-						<div class="input-group-append">
+						<div class="input-group-append col-sm-12 col-md-4 mt-3 mt-md-0">
 							<select name="type" class="custom-select">
 								<option value="post_title">Titre du post</option>
 								<option value="last_name">Nom d'enseignant</option>
