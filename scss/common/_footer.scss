@@ -1,10 +1,10 @@
 .footer {
   position: sticky;
   bottom: 0;
-  padding: 3rem 0 3rem;
+  padding: 3rem 0 0;
 
   @media (max-width: 991.98px) {
-    padding: 4rem 0;
+    padding: 1rem 0 0;
     text-align: center;
   }
 
@@ -49,37 +49,7 @@
     }
   }
 
-  &-list {
-    h5 {
-      font-weight: 500;
-      font-size: 1.25rem;
-    }
-    ul {
-      margin-bottom: 0;
-      list-style: none;
-    }
-    a {
-      font-weight: 300;
-      font-size: 1.125rem;
-      line-height: 38px;
-
-      color: var(--footer-text);
-
-      &:hover {
-        color: var(--footer-text-hover);
-      }
-    }
-  }
-
-  &-shape-1 {
-    position: absolute;
-    right: 91px;
-    top: -72px;
-    z-index: -1;
-  }
-  &-shape-2 {
-    position: absolute;
-    bottom: 0px;
-    left: -19px;
+  &-link {
+    color: #007bff;
   }
 }

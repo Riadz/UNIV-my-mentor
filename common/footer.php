@@ -25,6 +25,14 @@
 			</div>
 		</div>
 	</div>
+	<div class="bg-dark mt-2">
+		<div class="footer-copyright text-center py-3">
+			Crée par
+			<a href="https://github.com/Riadz" class="footer-link" target="_blank">
+				Riad Hachemane et Nour Ala Eddine
+			</a>
+		</div>
+	</div>
 </footer>
 
 <!-- external scripts -->
