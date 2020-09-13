@@ -459,6 +459,19 @@
       height: 60px;
       width: auto;
     }
+
+    > div:nth-child(1) {
+      overflow: auto;
+    }
+
+    @media (max-width: 991.98px) {
+      flex-direction: column;
+
+      .request-actions:nth-child(2) {
+        margin-top: 1rem;
+        justify-content: space-evenly;
+      }
+    }
   }
 
   &-info {
